@@ -388,10 +388,62 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
       <img src="https://i.ibb.co/VWRCzt4Z/ffbf4ec0848acb2cff41d5686c8c8efd.webp" class="login-badge" alt="sKora PD Logo" style="object-fit:contain;border-radius:6px;">
       <div class="login-title">sKora Police</div>
       <div class="login-sub">Knowledge Base · Authorised Access Only</div>
-      <label class="login-label" for="csn-input">Officer CSN</label>
-      <input class="login-input" id="csn-input" type="text" placeholder="ABC12345" maxlength="20" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
-      <button class="login-btn" onclick="doLogin()">Access System</button>
-      <div class="login-error" id="login-error">CSN not recognised — contact High Command</div>
+
+      <!-- STEP 1: CSN -->
+      <div id="login-step-1">
+        <label class="login-label" for="csn-input">Officer CSN</label>
+        <input class="login-input" id="csn-input" type="text" placeholder="ABC12345" maxlength="20" autocomplete="off" onkeydown="if(event.key==='Enter')doLoginStep1()">
+        <button class="login-btn" onclick="doLoginStep1()">Continue</button>
+      </div>
+
+      <!-- STEP 2: Enter password (existing user) -->
+      <div id="login-step-2" style="display:none;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:1rem;">
+          <button onclick="resetToStep1()" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:1rem;line-height:1;padding:0;" title="Back">←</button>
+          <span id="login-csn-display" style="font-family:'Share Tech Mono',monospace;font-size:.75rem;color:var(--accent);letter-spacing:.12em;"></span>
+        </div>
+        <label class="login-label" for="pw-input">Password</label>
+        <div style="position:relative;">
+          <input class="login-input" id="pw-input" type="password" placeholder="Enter password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLoginStep2()" style="margin-bottom:0;padding-right:42px;">
+          <button onclick="togglePwVisibility('pw-input','pw-eye')" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);">
+            <svg id="pw-eye" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <label class="div-check" style="margin:10px 0 14px;justify-content:flex-start;gap:7px;cursor:pointer;">
+          <input type="checkbox" id="remember-me" style="accent-color:var(--accent);width:14px;height:14px;cursor:pointer;">
+          <span style="font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);">Remember me</span>
+        </label>
+        <button class="login-btn" onclick="doLoginStep2()">Access System</button>
+      </div>
+
+      <!-- STEP 3: Create password (first login) -->
+      <div id="login-step-3" style="display:none;">
+        <div style="background:var(--accent-glow);border:1px solid var(--border-hover);border-radius:4px;padding:.75rem 1rem;margin-bottom:1rem;text-align:left;">
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;">First Login</div>
+          <p style="font-size:.8rem;color:var(--text-secondary);line-height:1.5;">Welcome. Please create a password for your account. You will need this every time you log in.</p>
+        </div>
+        <label class="login-label" for="new-pw-input">Create Password</label>
+        <div style="position:relative;margin-bottom:.75rem;">
+          <input class="login-input" id="new-pw-input" type="password" placeholder="Min 8 characters" autocomplete="new-password" style="margin-bottom:0;padding-right:42px;">
+          <button onclick="togglePwVisibility('new-pw-input','new-pw-eye')" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);">
+            <svg id="new-pw-eye" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <label class="login-label" for="confirm-pw-input">Confirm Password</label>
+        <div style="position:relative;">
+          <input class="login-input" id="confirm-pw-input" type="password" placeholder="Repeat password" autocomplete="new-password" onkeydown="if(event.key==='Enter')doSetPassword()" style="margin-bottom:0;padding-right:42px;">
+          <button onclick="togglePwVisibility('confirm-pw-input','confirm-pw-eye')" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--text-muted);">
+            <svg id="confirm-pw-eye" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+        <label class="div-check" style="margin:10px 0 14px;justify-content:flex-start;gap:7px;cursor:pointer;">
+          <input type="checkbox" id="remember-me-new" style="accent-color:var(--accent);width:14px;height:14px;cursor:pointer;">
+          <span style="font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);">Remember me</span>
+        </label>
+        <button class="login-btn" onclick="doSetPassword()">Set Password & Login</button>
+      </div>
+
+      <div class="login-error" id="login-error"></div>
       <p class="login-footer-note">Unauthorised access attempts are logged</p>
     </div>
 </div>
@@ -1635,31 +1687,176 @@ function showFirebaseStatus(state) {
 /* ═══════════════════════════════════════
    AUTH
 ═══════════════════════════════════════ */
-async function doLogin() {
-  const btn = document.querySelector('.login-btn');
-  const raw = document.getElementById('csn-input').value.trim();
-  const upper = raw.toUpperCase();
+/* ═══════════════════════════════════════
+   AUTH — MULTI-STEP LOGIN
+═══════════════════════════════════════ */
+const REMEMBER_KEY = 'skpd_remember';
+let pendingOfficer = null; // holds officer record between steps
+
+// Simple hash using SubtleCrypto (built into all modern browsers)
+async function hashPassword(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password + 'skpd_salt_v1');
+  const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function fbSetPassword(csn, hashedPw) {
+  await fbUpdateOfficer(csn, { passwordHash: hashedPw });
+}
+
+// ── STEP 1: verify CSN exists ──
+async function doLoginStep1() {
+  const btn = document.querySelector('#login-step-1 .login-btn');
+  const raw = document.getElementById('csn-input').value.trim().toUpperCase();
+
+  if (!raw) { showLoginError('Please enter your CSN'); return; }
 
   btn.textContent = 'Checking...';
   btn.disabled = true;
 
   try {
-    const officer = await fbGetOfficer(upper);
+    const officer = await fbGetOfficer(raw);
     if (!officer) {
       showLoginError('CSN not recognised — contact High Command');
-      btn.textContent = 'Access System';
+      btn.textContent = 'Continue';
       btn.disabled = false;
       return;
     }
-    saveSession(officer);
-    bootApp(officer);
+    pendingOfficer = officer;
+    document.getElementById('login-csn-display').textContent = raw;
+
+    if (officer.passwordHash) {
+      // Existing user — show password step
+      showLoginStep(2);
+      // Load remembered credentials
+      loadRemembered();
+    } else {
+      // First login — show set password step
+      showLoginStep(3);
+    }
   } catch(e) {
     showLoginError('Connection error — check your internet and try again');
     console.error(e);
   }
 
+  btn.textContent = 'Continue';
+  btn.disabled = false;
+}
+
+// ── STEP 2: verify password ──
+async function doLoginStep2() {
+  const btn = document.querySelector('#login-step-2 .login-btn');
+  const pw = document.getElementById('pw-input').value;
+  const remember = document.getElementById('remember-me').checked;
+
+  if (!pw) { showLoginError('Please enter your password'); return; }
+
+  btn.textContent = 'Verifying...';
+  btn.disabled = true;
+
+  try {
+    const hashed = await hashPassword(pw);
+    if (hashed !== pendingOfficer.passwordHash) {
+      showLoginError('Incorrect password');
+      btn.textContent = 'Access System';
+      btn.disabled = false;
+      return;
+    }
+
+    if (remember) {
+      localStorage.setItem(REMEMBER_KEY, JSON.stringify({ csn: pendingOfficer.csn, pw }));
+    } else {
+      localStorage.removeItem(REMEMBER_KEY);
+    }
+
+    saveSession(pendingOfficer);
+    bootApp(pendingOfficer);
+  } catch(e) {
+    showLoginError('Error verifying password');
+    console.error(e);
+  }
+
   btn.textContent = 'Access System';
   btn.disabled = false;
+}
+
+// ── STEP 3: set new password (first login) ──
+async function doSetPassword() {
+  const btn = document.querySelector('#login-step-3 .login-btn');
+  const pw  = document.getElementById('new-pw-input').value;
+  const pw2 = document.getElementById('confirm-pw-input').value;
+  const remember = document.getElementById('remember-me-new').checked;
+
+  if (pw.length < 8) { showLoginError('Password must be at least 8 characters'); return; }
+  if (pw !== pw2)    { showLoginError('Passwords do not match'); return; }
+
+  btn.textContent = 'Saving...';
+  btn.disabled = true;
+
+  try {
+    const hashed = await hashPassword(pw);
+    await fbSetPassword(pendingOfficer.csn, hashed);
+    pendingOfficer.passwordHash = hashed;
+
+    await writeLog('CONFIG', `Officer ${pendingOfficer.csn} set their password for the first time`);
+
+    if (remember) {
+      localStorage.setItem(REMEMBER_KEY, JSON.stringify({ csn: pendingOfficer.csn, pw }));
+    } else {
+      localStorage.removeItem(REMEMBER_KEY);
+    }
+
+    saveSession(pendingOfficer);
+    bootApp(pendingOfficer);
+  } catch(e) {
+    showLoginError('Error saving password — try again');
+    console.error(e);
+  }
+
+  btn.textContent = 'Set Password & Login';
+  btn.disabled = false;
+}
+
+// ── Helpers ──
+function showLoginStep(n) {
+  [1, 2, 3].forEach(i => {
+    document.getElementById('login-step-' + i).style.display = i === n ? 'block' : 'none';
+  });
+  document.getElementById('login-error').classList.remove('show');
+  if (n === 2) setTimeout(() => document.getElementById('pw-input').focus(), 50);
+  if (n === 3) setTimeout(() => document.getElementById('new-pw-input').focus(), 50);
+}
+
+function resetToStep1() {
+  pendingOfficer = null;
+  document.getElementById('pw-input').value = '';
+  document.getElementById('new-pw-input').value = '';
+  document.getElementById('confirm-pw-input').value = '';
+  showLoginStep(1);
+  setTimeout(() => document.getElementById('csn-input').focus(), 50);
+}
+
+function loadRemembered() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(REMEMBER_KEY));
+    if (saved && saved.csn === pendingOfficer.csn && saved.pw) {
+      document.getElementById('pw-input').value = saved.pw;
+      document.getElementById('remember-me').checked = true;
+    }
+  } catch(e) {}
+}
+
+function togglePwVisibility(inputId, eyeId) {
+  const input = document.getElementById(inputId);
+  const eye   = document.getElementById(eyeId);
+  if (!input) return;
+  const isHidden = input.type === 'password';
+  input.type = isHidden ? 'text' : 'password';
+  eye.innerHTML = isHidden
+    ? `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>`
+    : `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`;
 }
 
 function showLoginError(msg) {
@@ -1674,11 +1871,19 @@ function doLogout(forced = false) {
   stopLogsListener();
   if (videosUnsubscribe) { videosUnsubscribe(); videosUnsubscribe = null; }
   clearSession();
+  pendingOfficer = null;
   document.getElementById('csn-input').value = '';
-  if (forced) {
-    showLoginError('Your access has been revoked. Contact High Command.');
-  }
+  document.getElementById('pw-input').value = '';
+  resetToStep1();
+  if (forced) showLoginError('Your access has been revoked. Contact High Command.');
   switchView('login');
+  // Check if remembered and pre-fill CSN
+  try {
+    const saved = JSON.parse(localStorage.getItem(REMEMBER_KEY));
+    if (saved?.csn) {
+      document.getElementById('csn-input').value = saved.csn;
+    }
+  } catch(e) {}
 }
 
 function bootApp(officer) {
@@ -1875,9 +2080,21 @@ function renderTable() {
       </td>
       <td>
         <button class="edit-btn" onclick="openEdit('${o.csn}')">Edit</button>
+        <button class="edit-btn" onclick="resetOfficerPassword('${o.csn}')" title="Force password reset" style="color:var(--warn-text);border-color:var(--warn-border);">Reset PW</button>
         <button class="del-btn" onclick="deleteOfficer('${o.csn}')">Remove</button>
       </td>
     </tr>`).join('');
+}
+
+async function resetOfficerPassword(csn) {
+  if (!confirm(`Reset password for ${csn}? They will be prompted to create a new one on next login.`)) return;
+  try {
+    await fbUpdateOfficer(csn, { passwordHash: '' });
+    await writeLog('CONFIG', `Admin reset password for officer ${csn}`);
+    renderTable();
+  } catch(e) {
+    alert('Firebase error: ' + e.message);
+  }
 }
 
 async function deleteOfficer(csn) {
@@ -1986,6 +2203,12 @@ async function changeAdminPin() {
    INIT
 ═══════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
+  // Pre-fill CSN if remembered
+  try {
+    const saved = JSON.parse(localStorage.getItem(REMEMBER_KEY));
+    if (saved?.csn) document.getElementById('csn-input').value = saved.csn;
+  } catch(e) {}
+
   const sess = getSession();
   if (sess) {
     bootApp(sess);
@@ -1995,7 +2218,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Expose functions called from inline HTML handlers to global scope
-window.doLogin        = doLogin;
+window.doLogin        = doLoginStep1;
+window.doLoginStep1   = doLoginStep1;
+window.doLoginStep2   = doLoginStep2;
+window.doSetPassword  = doSetPassword;
+window.resetToStep1   = resetToStep1;
+window.togglePwVisibility = togglePwVisibility;
 window.doLogout       = doLogout;
 window.showMain       = showMain;
 window.showPage       = showPage;
@@ -2005,6 +2233,7 @@ window.showPolicingPage  = showPolicingPage;
 window.showPolicingIndex = showPolicingIndex;
 window.addOfficer     = addOfficer;
 window.deleteOfficer  = deleteOfficer;
+window.resetOfficerPassword = resetOfficerPassword;
 window.openEdit       = openEdit;
 window.closeModal     = closeModal;
 window.saveEdit       = saveEdit;
