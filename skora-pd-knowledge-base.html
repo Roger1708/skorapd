@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>sKora PD — Knowledge Base</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════ */
+:root {
+  --blue-900:#042C53;--blue-800:#0C447C;--blue-700:#185FA5;
+  --blue-600:#1E6FBF;--blue-500:#378ADD;--blue-400:#5FA3E8;
+  --blue-200:#B5D4F4;--blue-100:#D9EBFB;--blue-50:#EEF6FD;
+}
+
+/* ── DARK BASE (blue default) ── */
+[data-theme="dark"] {
+  --bg-primary:#080E17;--bg-secondary:#0D1A27;--bg-card:#111E2D;
+  --bg-card-hover:#152537;--border:rgba(55,138,221,0.18);
+  --border-hover:rgba(55,138,221,0.45);--text-primary:#E8F1FA;
+  --text-secondary:#8BAFD4;--text-muted:#4A6A8A;--accent:#378ADD;
+  --accent-bright:#5FA3E8;--accent-glow:rgba(55,138,221,0.15);
+  --header-bg:rgba(8,14,23,0.95);--scan-line:rgba(55,138,221,0.03);
+  --danger:rgba(220,60,60,0.15);--danger-border:rgba(220,60,60,0.35);
+  --danger-text:#f87171;--success:rgba(45,180,130,0.12);
+  --success-border:rgba(45,180,130,0.35);--success-text:#2DD4AA;
+  --warn:rgba(186,117,23,0.1);--warn-border:rgba(186,117,23,0.3);--warn-text:#BA7517;
+}
+/* ── LIGHT BASE (blue default) ── */
+[data-theme="light"] {
+  --bg-primary:#F0F6FC;--bg-secondary:#E2EDF8;--bg-card:#FFFFFF;
+  --bg-card-hover:#EEF6FD;--border:rgba(24,95,165,0.15);
+  --border-hover:rgba(24,95,165,0.4);--text-primary:#042C53;
+  --text-secondary:#185FA5;--text-muted:#5FA3E8;--accent:#185FA5;
+  --accent-bright:#378ADD;--accent-glow:rgba(24,95,165,0.08);
+  --header-bg:rgba(240,246,252,0.95);--scan-line:rgba(24,95,165,0.02);
+  --danger:rgba(220,60,60,0.08);--danger-border:rgba(220,60,60,0.25);
+  --danger-text:#b91c1c;--success:rgba(45,180,130,0.08);
+  --success-border:rgba(45,180,130,0.25);--success-text:#0f766e;
+  --warn:rgba(186,117,23,0.06);--warn-border:rgba(186,117,23,0.2);--warn-text:#92400e;
+}
+
+/* ── BLACK / WHITE THEME ── */
+[data-theme="dark"][data-colour="bw"] {
+  --bg-primary:#0a0a0a;--bg-secondary:#141414;--bg-card:#1a1a1a;
+  --bg-card-hover:#222;--border:rgba(255,255,255,0.12);
+  --border-hover:rgba(255,255,255,0.35);--text-primary:#f0f0f0;
+  --text-secondary:#aaa;--text-muted:#555;--accent:#e0e0e0;
+  --accent-bright:#ffffff;--accent-glow:rgba(255,255,255,0.07);
+  --header-bg:rgba(10,10,10,0.95);--scan-line:rgba(255,255,255,0.02);
+}
+[data-theme="light"][data-colour="bw"] {
+  --bg-primary:#f5f5f5;--bg-secondary:#e8e8e8;--bg-card:#ffffff;
+  --bg-card-hover:#f0f0f0;--border:rgba(0,0,0,0.12);
+  --border-hover:rgba(0,0,0,0.35);--text-primary:#0a0a0a;
+  --text-secondary:#333;--text-muted:#999;--accent:#222;
+  --accent-bright:#000;--accent-glow:rgba(0,0,0,0.06);
+  --header-bg:rgba(245,245,245,0.95);--scan-line:rgba(0,0,0,0.015);
+}
+
+/* ── RED THEME ── */
+[data-theme="dark"][data-colour="red"] {
+  --bg-primary:#130808;--bg-secondary:#1c0e0e;--bg-card:#200f0f;
+  --bg-card-hover:#2a1414;--border:rgba(220,60,60,0.2);
+  --border-hover:rgba(220,60,60,0.5);--text-primary:#fae8e8;
+  --text-secondary:#d48b8b;--text-muted:#8a4a4a;--accent:#dd3333;
+  --accent-bright:#f87171;--accent-glow:rgba(220,60,60,0.15);
+  --header-bg:rgba(19,8,8,0.95);--scan-line:rgba(220,60,60,0.03);
+}
+[data-theme="light"][data-colour="red"] {
+  --bg-primary:#fff0f0;--bg-secondary:#fde0e0;--bg-card:#ffffff;
+  --bg-card-hover:#fff0f0;--border:rgba(180,30,30,0.15);
+  --border-hover:rgba(180,30,30,0.4);--text-primary:#5c0a0a;
+  --text-secondary:#b91c1c;--text-muted:#f87171;--accent:#b91c1c;
+  --accent-bright:#dd3333;--accent-glow:rgba(180,30,30,0.08);
+  --header-bg:rgba(255,240,240,0.95);--scan-line:rgba(180,30,30,0.02);
+}
+
+/* ── GREEN THEME ── */
+[data-theme="dark"][data-colour="green"] {
+  --bg-primary:#071310;--bg-secondary:#0c1c17;--bg-card:#0f211c;
+  --bg-card-hover:#142b24;--border:rgba(34,197,94,0.18);
+  --border-hover:rgba(34,197,94,0.45);--text-primary:#e8faf0;
+  --text-secondary:#6bbf8a;--text-muted:#2d6b4a;--accent:#22c55e;
+  --accent-bright:#4ade80;--accent-glow:rgba(34,197,94,0.13);
+  --header-bg:rgba(7,19,16,0.95);--scan-line:rgba(34,197,94,0.03);
+}
+[data-theme="light"][data-colour="green"] {
+  --bg-primary:#f0fdf4;--bg-secondary:#dcfce7;--bg-card:#ffffff;
+  --bg-card-hover:#f0fdf4;--border:rgba(22,163,74,0.15);
+  --border-hover:rgba(22,163,74,0.4);--text-primary:#052e16;
+  --text-secondary:#16a34a;--text-muted:#4ade80;--accent:#16a34a;
+  --accent-bright:#22c55e;--accent-glow:rgba(22,163,74,0.08);
+  --header-bg:rgba(240,253,244,0.95);--scan-line:rgba(22,163,74,0.02);
+}
+
+/* ── YELLOW THEME ── */
+[data-theme="dark"][data-colour="yellow"] {
+  --bg-primary:#131008;--bg-secondary:#1c180c;--bg-card:#211c0f;
+  --bg-card-hover:#2a2414;--border:rgba(234,179,8,0.18);
+  --border-hover:rgba(234,179,8,0.45);--text-primary:#fefce8;
+  --text-secondary:#c9a84c;--text-muted:#7a6020;--accent:#eab308;
+  --accent-bright:#facc15;--accent-glow:rgba(234,179,8,0.13);
+  --header-bg:rgba(19,16,8,0.95);--scan-line:rgba(234,179,8,0.03);
+}
+[data-theme="light"][data-colour="yellow"] {
+  --bg-primary:#fefce8;--bg-secondary:#fef9c3;--bg-card:#ffffff;
+  --bg-card-hover:#fefce8;--border:rgba(161,128,8,0.15);
+  --border-hover:rgba(161,128,8,0.4);--text-primary:#422006;
+  --text-secondary:#a16207;--text-muted:#facc15;--accent:#a16207;
+  --accent-bright:#eab308;--accent-glow:rgba(161,128,8,0.08);
+  --header-bg:rgba(254,252,232,0.95);--scan-line:rgba(161,128,8,0.02);
+}
+
+/* ── PURPLE THEME ── */
+[data-theme="dark"][data-colour="purple"] {
+  --bg-primary:#0e0813;--bg-secondary:#150d1c;--bg-card:#1a1021;
+  --bg-card-hover:#22152b;--border:rgba(139,92,246,0.18);
+  --border-hover:rgba(139,92,246,0.45);--text-primary:#f3e8ff;
+  --text-secondary:#a78bca;--text-muted:#5b3f8a;--accent:#8b5cf6;
+  --accent-bright:#a78bfa;--accent-glow:rgba(139,92,246,0.13);
+  --header-bg:rgba(14,8,19,0.95);--scan-line:rgba(139,92,246,0.03);
+}
+[data-theme="light"][data-colour="purple"] {
+  --bg-primary:#faf5ff;--bg-secondary:#f3e8ff;--bg-card:#ffffff;
+  --bg-card-hover:#faf5ff;--border:rgba(109,40,217,0.15);
+  --border-hover:rgba(109,40,217,0.4);--text-primary:#3b0764;
+  --text-secondary:#7c3aed;--text-muted:#a78bfa;--accent:#7c3aed;
+  --accent-bright:#8b5cf6;--accent-glow:rgba(109,40,217,0.08);
+  --header-bg:rgba(250,245,255,0.95);--scan-line:rgba(109,40,217,0.02);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--bg-primary);color:var(--text-primary);min-height:100vh;transition:background .3s,color .3s;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,var(--scan-line) 0px,var(--scan-line) 1px,transparent 1px,transparent 3px);pointer-events:none;z-index:0;}
+
+/* ─── VIEWS ─── */
+.view{display:none !important;} .view.active{display:block !important;}
+.page{display:none;} .page.active{display:block;}
+
+/* ─── LOGIN SCREEN ─── */
+#view-login.active{display:flex !important;align-items:center;justify-content:center;min-height:100vh;padding:2rem;position:relative;z-index:1;}
+.login-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:2.5rem 2rem;width:100%;max-width:400px;text-align:center;}
+.login-badge{margin:0 auto 1.5rem;width:64px;height:64px;}
+.login-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-primary);line-height:1;}
+.login-sub{font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);margin-top:4px;margin-bottom:1.75rem;}
+.login-label{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);display:block;text-align:left;margin-bottom:6px;}
+.login-input{width:100%;background:var(--bg-secondary);border:1px solid var(--border);border-radius:4px;padding:10px 14px;font-family:'Share Tech Mono',monospace;font-size:.9rem;letter-spacing:.12em;color:var(--text-primary);outline:none;transition:border-color .2s;margin-bottom:1rem;text-transform:uppercase;}
+.login-input:focus{border-color:var(--accent);}
+.login-input::placeholder{color:var(--text-muted);text-transform:uppercase;}
+.login-btn{width:100%;background:var(--accent);border:none;border-radius:4px;padding:11px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;cursor:pointer;transition:opacity .2s;}
+.login-btn:hover{opacity:.85;}
+.login-btn:disabled{opacity:.5;cursor:not-allowed;}
+.sync-badge{display:inline-flex;align-items:center;gap:5px;font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--success-text);background:var(--success);border:1px solid var(--success-border);border-radius:2px;padding:3px 8px;}
+.login-error{font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--danger-text);background:var(--danger);border:1px solid var(--danger-border);border-radius:4px;padding:8px 12px;margin-top:.75rem;display:none;}
+.login-error.show{display:block;}
+.login-footer-note{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--text-muted);letter-spacing:.12em;margin-top:1.25rem;text-transform:uppercase;}
+
+/* ─── HEADER ─── */
+header{position:sticky;top:0;z-index:100;background:var(--header-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;transition:background .3s,border-color .3s;}
+.header-left{display:flex;align-items:center;gap:14px;}
+.badge-icon{width:34px;height:34px;flex-shrink:0;}
+.header-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-primary);line-height:1;}
+.header-subtitle{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--text-muted);letter-spacing:.18em;text-transform:uppercase;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:.75rem;}
+.header-profile{display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:5px 12px 5px 8px;cursor:default;}
+.profile-avatar{width:24px;height:24px;border-radius:50%;background:var(--accent-glow);border:1px solid var(--border-hover);display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.65rem;color:var(--accent);}
+.profile-csn{font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.1em;color:var(--text-secondary);text-transform:uppercase;}
+.profile-rank{font-family:'Share Tech Mono',monospace;font-size:.55rem;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase;}
+.logout-btn{font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);background:none;border:1px solid var(--border);border-radius:4px;padding:5px 10px;cursor:pointer;transition:color .2s,border-color .2s;}
+.logout-btn:hover{color:var(--danger-text);border-color:var(--danger-border);}
+.theme-toggle{display:flex;align-items:center;gap:7px;cursor:pointer;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:5px 10px 5px 8px;transition:border-color .2s;}
+.theme-toggle:hover{border-color:var(--border-hover);}
+.toggle-track{width:28px;height:16px;background:var(--border);border-radius:8px;position:relative;transition:background .3s;}
+[data-theme="light"] .toggle-track{background:var(--accent);}
+.toggle-thumb{position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--text-muted);transition:transform .3s,background .3s;}
+[data-theme="light"] .toggle-thumb{transform:translateX(12px);background:#fff;}
+.toggle-label{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--text-muted);text-transform:uppercase;user-select:none;}
+
+/* ─── MAIN DASHBOARD ─── */
+.dashboard{position:relative;z-index:1;padding:2rem 2rem 4rem;max-width:1200px;margin:0 auto;}
+.dash-hero{text-align:center;padding:2rem 0 2.5rem;}
+.dash-tag{display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);border:1px solid var(--border);background:var(--accent-glow);padding:4px 12px;border-radius:2px;margin-bottom:1rem;}
+.dash-tag::before{content:'';display:inline-block;width:5px;height:5px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.dash-h1{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:clamp(2rem,4vw,3rem);letter-spacing:.06em;text-transform:uppercase;color:var(--text-primary);}
+.dash-h1 span{color:var(--accent);}
+.dash-divider{width:50px;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);margin:.9rem auto;}
+.dash-desc{font-size:.88rem;color:var(--text-secondary);max-width:460px;margin:0 auto;line-height:1.7;}
+
+.section-label{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-muted);margin-bottom:1rem;display:flex;align-items:center;gap:12px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ─── DIVISION CARDS ─── */
+.div-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin-bottom:2.5rem;}
+.div-card{background:var(--bg-card);padding:1.5rem 1.25rem;display:flex;flex-direction:column;gap:10px;cursor:pointer;text-decoration:none;color:inherit;position:relative;overflow:hidden;transition:background .2s;}
+.div-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--card-accent, var(--accent));transform:scaleY(0);transform-origin:bottom;transition:transform .25s;}
+.div-card:hover{background:var(--bg-card-hover);}
+.div-card:hover::before{transform:scaleY(1);}
+.div-card.locked{cursor:not-allowed;opacity:.5;}
+.div-card.locked:hover{background:var(--bg-card);}
+.div-card.locked::before{display:none;}
+.card-num{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--text-muted);letter-spacing:.15em;}
+.card-icon-wrap{width:36px;height:36px;border:1px solid var(--border);border-radius:4px;background:var(--accent-glow);display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s;}
+.div-card:hover:not(.locked) .card-icon-wrap{border-color:var(--border-hover);background:rgba(55,138,221,.12);}
+.card-icon-wrap svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.card-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-primary);line-height:1.2;transition:color .2s;}
+.div-card:hover:not(.locked) .card-title{color:var(--accent-bright);}
+.card-access{margin-top:auto;display:flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);transition:color .2s,gap .2s;}
+.div-card:hover:not(.locked) .card-access{color:var(--accent);gap:10px;}
+.card-access svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.lock-icon{width:13px;height:13px;stroke:var(--text-muted);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ─── CONTENT SECTIONS ─── */
+.content-section{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:2rem 2rem 4rem;}
+.section-header{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);}
+.section-num-large{font-family:'Share Tech Mono',monospace;font-size:2rem;color:var(--border);line-height:1;flex-shrink:0;margin-top:4px;}
+.section-header-text h2{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-primary);}
+.section-header-text p{font-size:.78rem;color:var(--text-muted);margin-top:4px;letter-spacing:.04em;font-family:'Share Tech Mono',monospace;text-transform:uppercase;}
+.back-btn{display:inline-flex;align-items:center;gap:8px;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;padding:7px 14px;border:1px solid var(--border);border-radius:4px;background:var(--bg-card);cursor:pointer;transition:color .2s,border-color .2s,background .2s;margin-bottom:1.75rem;}
+.back-btn:hover{color:var(--accent-bright);border-color:var(--border-hover);background:var(--accent-glow);}
+.back-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+/* ─── CONTENT COMPONENTS ─── */
+.prose{line-height:1.75;font-size:.9rem;color:var(--text-primary);}
+.prose p{margin-bottom:1rem;}
+.prose strong{font-weight:500;color:var(--accent-bright);}
+.subsection-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:5px;margin:1.75rem 0 .9rem;}
+.rule-block{background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 4px 4px 0;padding:.9rem 1.1rem;margin-bottom:.65rem;}
+.rule-block p{margin:0;font-size:.86rem;color:var(--text-secondary);line-height:1.65;}
+.rule-block strong{display:block;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.05em;color:var(--text-primary);margin-bottom:3px;}
+.warning-block{background:var(--warn);border:1px solid var(--warn-border);border-radius:4px;padding:.9rem 1.1rem;margin-bottom:1rem;}
+.warning-block .warn-label{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--warn-text);margin-bottom:5px;}
+.warning-block p{margin:0;font-size:.85rem;color:var(--text-secondary);line-height:1.65;}
+.info-block{background:var(--accent-glow);border:1px solid var(--border-hover);border-radius:4px;padding:.9rem 1.1rem;margin-bottom:1rem;}
+.info-block .info-label{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:5px;}
+.info-block p{margin:0;font-size:.85rem;color:var(--text-secondary);line-height:1.65;}
+.chain-flow{display:flex;flex-direction:column;align-items:flex-start;gap:0;margin:1.5rem 0;}
+.chain-node{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:.75rem 1.25rem;display:flex;align-items:center;gap:12px;min-width:280px;}
+.chain-node .rank-dot{width:7px;height:7px;background:var(--accent);border-radius:50%;flex-shrink:0;}
+.chain-node .rank-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.92rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-primary);}
+.chain-node .rank-badge{margin-left:auto;font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);background:var(--accent-glow);border:1px solid var(--border);padding:2px 7px;border-radius:2px;}
+.chain-arrow{display:flex;align-items:center;padding-left:1.4rem;height:24px;}
+.chain-arrow svg{width:13px;height:13px;stroke:var(--text-muted);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.discipline-table{width:100%;border-collapse:collapse;margin:1rem 0 1.25rem;font-size:.84rem;}
+.discipline-table th{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:7px 11px;border-bottom:1px solid var(--border);background:var(--bg-secondary);}
+.discipline-table td{padding:9px 11px;border-bottom:1px solid var(--border);color:var(--text-secondary);vertical-align:top;}
+.discipline-table tr:last-child td{border-bottom:none;}
+.offence-num{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.88rem;color:var(--accent);white-space:nowrap;}
+.one-up-row{display:grid;grid-template-columns:155px 1fr;gap:0;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:.45rem;}
+.one-up-threat{background:var(--accent-glow);border-right:1px solid var(--border);padding:.7rem .9rem;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;color:var(--accent-bright);display:flex;align-items:center;}
+.one-up-response{background:var(--bg-card);padding:.7rem .9rem;font-size:.84rem;color:var(--text-secondary);display:flex;align-items:center;line-height:1.5;}
+.raid-phase{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-bottom:.9rem;}
+.raid-phase-header{background:var(--accent-glow);border-bottom:1px solid var(--border);padding:.6rem 1rem;display:flex;align-items:center;gap:10px;}
+.raid-phase-header .phase-tag{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);}
+.raid-phase-header .phase-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.92rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-bright);}
+.raid-phase-body{padding:.9rem 1.1rem;}
+.raid-phase-body p{font-size:.86rem;color:var(--text-secondary);line-height:1.7;margin-bottom:.7rem;}
+.raid-phase-body p:last-child{margin-bottom:0;}
+.tfc-card{display:grid;grid-template-columns:32px 1fr;gap:11px;background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:.9rem 1.1rem;margin-bottom:.65rem;align-items:start;}
+.tfc-card .tfc-num{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--accent);padding-top:2px;}
+.tfc-card .tfc-name{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.9rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text-primary);margin-bottom:3px;}
+.tfc-card .tfc-desc{font-size:.84rem;color:var(--text-secondary);line-height:1.6;}
+.placeholder-block{background:var(--bg-card);border:1px dashed var(--border);border-radius:4px;padding:3rem 2rem;text-align:center;}
+.placeholder-block p{font-family:'Share Tech Mono',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);}
+.placeholder-block strong{display:block;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.95rem;color:var(--accent);letter-spacing:.1em;margin-bottom:6px;}
+
+/* ─── ADMIN PANEL ─── */
+.admin-wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:2rem 2rem 4rem;}
+.admin-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:2rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);}
+.admin-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-primary);}
+.admin-sub{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-top:4px;}
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:2rem;}
+.stat-card{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:.9rem 1rem;}
+.stat-label{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:5px;}
+.stat-val{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.6rem;color:var(--text-primary);}
+.stat-val.accent{color:var(--accent);}
+.add-officer-form{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:1.25rem;margin-bottom:1.75rem;}
+.form-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-primary);margin-bottom:1rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end;}
+.form-group{display:flex;flex-direction:column;gap:5px;}
+.form-label{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);}
+.form-input{background:var(--bg-secondary);border:1px solid var(--border);border-radius:4px;padding:8px 11px;font-family:'Share Tech Mono',monospace;font-size:.8rem;letter-spacing:.08em;color:var(--text-primary);outline:none;transition:border-color .2s;text-transform:uppercase;}
+.form-input:focus{border-color:var(--accent);}
+.form-input::placeholder{color:var(--text-muted);}
+.form-select{background:var(--bg-secondary);border:1px solid var(--border);border-radius:4px;padding:8px 11px;font-family:'Share Tech Mono',monospace;font-size:.78rem;letter-spacing:.06em;color:var(--text-primary);outline:none;transition:border-color .2s;cursor:pointer;}
+.form-select:focus{border-color:var(--accent);}
+.add-btn{background:var(--accent);border:none;border-radius:4px;padding:8px 18px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;cursor:pointer;transition:opacity .2s;white-space:nowrap;}
+.add-btn:hover{opacity:.85;}
+.div-checks{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;}
+.div-check{display:flex;align-items:center;gap:5px;cursor:pointer;}
+.div-check input{accent-color:var(--accent);width:14px;height:14px;cursor:pointer;}
+.div-check span{font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-secondary);}
+.officer-table-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;overflow:hidden;}
+.officer-table-header{display:flex;align-items:center;justify-content:space-between;padding:.9rem 1.25rem;border-bottom:1px solid var(--border);}
+.officer-table-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-primary);}
+.search-input{background:var(--bg-secondary);border:1px solid var(--border);border-radius:4px;padding:6px 10px;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.08em;color:var(--text-primary);outline:none;width:200px;transition:border-color .2s;}
+.search-input:focus{border-color:var(--accent);}
+.officer-table{width:100%;border-collapse:collapse;}
+.officer-table th{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:8px 14px;border-bottom:1px solid var(--border);background:var(--bg-secondary);}
+.officer-table td{padding:10px 14px;border-bottom:1px solid var(--border);font-size:.84rem;color:var(--text-secondary);vertical-align:middle;}
+.officer-table tr:last-child td{border-bottom:none;}
+.officer-table tr:hover td{background:var(--bg-card-hover);}
+.csn-cell{font-family:'Share Tech Mono',monospace;font-size:.78rem;letter-spacing:.1em;color:var(--text-primary);}
+.rank-cell{font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.08em;color:var(--text-muted);}
+.div-pill{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin:1px;background:var(--accent-glow);border:1px solid var(--border);color:var(--accent);}
+.del-btn{background:none;border:1px solid var(--danger-border);border-radius:3px;padding:4px 10px;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--danger-text);cursor:pointer;transition:background .2s;}
+.del-btn:hover{background:var(--danger);}
+.edit-btn{background:none;border:1px solid var(--border);border-radius:3px;padding:4px 10px;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;transition:background .2s,color .2s;margin-right:5px;}
+.edit-btn:hover{background:var(--accent-glow);color:var(--accent);}
+.admin-pin-section{margin-top:1.75rem;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:1.25rem;}
+.inline-form{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;margin-top:.75rem;}
+.success-msg{font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:var(--success-text);background:var(--success);border:1px solid var(--success-border);border-radius:4px;padding:6px 11px;display:none;}
+.success-msg.show{display:inline-block;}
+
+/* ─── MODAL ─── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:200;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.show{display:flex;}
+.modal{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:1.75rem;width:100%;max-width:440px;}
+.modal-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1.1rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-primary);margin-bottom:1rem;}
+.modal-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:1.25rem;}
+.modal-cancel{background:none;border:1px solid var(--border);border-radius:4px;padding:7px 16px;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);cursor:pointer;transition:border-color .2s;}
+.modal-cancel:hover{border-color:var(--border-hover);}
+.modal-confirm{background:var(--accent);border:none;border-radius:4px;padding:7px 16px;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;cursor:pointer;transition:opacity .2s;}
+.modal-confirm:hover{opacity:.85;}
+
+/* ─── FOOTER ─── */
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.25rem 2rem;display:flex;align-items:center;justify-content:space-between;}
+.footer-left{font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--text-muted);letter-spacing:.15em;text-transform:uppercase;}
+.footer-right{display:flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:.6rem;color:var(--text-muted);letter-spacing:.15em;text-transform:uppercase;}
+.status-dot{width:6px;height:6px;background:#2DD4AA;border-radius:50%;animation:pulse 2s infinite;}
+@media(max-width:640px){
+  header{padding:0 1rem;}
+  .dashboard,.content-section,.admin-wrap{padding:1.25rem 1rem 3rem;}
+  .div-grid{grid-template-columns:1fr 1fr;}
+  .form-row{grid-template-columns:1fr 1fr;}
+  .admin-stats{grid-template-columns:1fr 1fr;}
+  footer{flex-direction:column;gap:6px;text-align:center;}
+  .one-up-row{grid-template-columns:1fr;}
+  .one-up-threat{border-right:none;border-bottom:1px solid var(--border);}
+}
+
+/* ─── SETTINGS PANEL ─── */
+.settings-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);}
+.settings-overlay.show{display:flex;align-items:flex-start;justify-content:flex-end;padding:72px 1.5rem 0;}
+.settings-panel{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:1.5rem;width:280px;box-shadow:0 8px 32px rgba(0,0,0,.4);}
+.settings-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;justify-content:space-between;}
+.settings-close{background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:1.1rem;line-height:1;padding:2px 4px;}
+.settings-close:hover{color:var(--text-primary);}
+.settings-section{margin-bottom:1.25rem;}
+.settings-section-label{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.65rem;}
+.theme-mode-row{display:flex;gap:8px;}
+.mode-btn{flex:1;padding:7px 0;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;background:var(--bg-secondary);border:1px solid var(--border);border-radius:4px;color:var(--text-secondary);cursor:pointer;transition:all .2s;}
+.mode-btn.active{background:var(--accent-glow);border-color:var(--accent);color:var(--accent);}
+.colour-swatches{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.swatch{display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;}
+.swatch-dot{width:32px;height:32px;border-radius:50%;border:2px solid transparent;transition:transform .15s,border-color .15s;}
+.swatch.active .swatch-dot{border-color:var(--text-primary);transform:scale(1.15);}
+.swatch-label{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);}
+.swatch.active .swatch-label{color:var(--text-primary);}
+.settings-btn{display:flex;align-items:center;gap:5px;font-family:'Rajdhani',sans-serif;font-weight:600;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-muted);background:none;border:1px solid var(--border);border-radius:4px;padding:5px 10px;cursor:pointer;transition:color .2s,border-color .2s;}
+.settings-btn:hover{color:var(--accent);border-color:var(--border-hover);}
+.settings-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-top:1rem;}
+.video-card{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:border-color .2s;}
+.video-card:hover{border-color:var(--border-hover);}
+.video-embed{width:100%;aspect-ratio:16/9;background:var(--bg-secondary);border:none;display:block;}
+.video-info{padding:.85rem 1rem;}
+.video-title{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text-primary);margin-bottom:3px;}
+.video-desc{font-size:.78rem;color:var(--text-muted);line-height:1.5;}
+.video-add-form{background:var(--bg-card);border:1px solid var(--border);border-radius:6px;padding:1.25rem;margin-bottom:1.75rem;}
+.log-table{width:100%;border-collapse:collapse;font-size:.83rem;}
+.log-table th{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);text-align:left;padding:7px 11px;border-bottom:1px solid var(--border);background:var(--bg-secondary);}
+.log-table td{padding:9px 11px;border-bottom:1px solid var(--border);color:var(--text-secondary);vertical-align:top;}
+.log-table tr:last-child td{border-bottom:none;}
+.log-table tr:hover td{background:var(--bg-card-hover);}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     LOGIN VIEW
+═══════════════════════════════════════ -->
+<div id="view-login" class="view active">
+    <div class="login-card">
+      <img src="https://i.ibb.co/VWRCzt4Z/ffbf4ec0848acb2cff41d5686c8c8efd.webp" class="login-badge" alt="sKora PD Logo" style="object-fit:contain;border-radius:6px;">
+      <div class="login-title">sKora Police</div>
+      <div class="login-sub">Knowledge Base · Authorised Access Only</div>
+      <label class="login-label" for="csn-input">Officer CSN</label>
+      <input class="login-input" id="csn-input" type="text" placeholder="ABC12345" maxlength="20" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
+      <button class="login-btn" onclick="doLogin()">Access System</button>
+      <div class="login-error" id="login-error">CSN not recognised — contact High Command</div>
+      <p class="login-footer-note">Unauthorised access attempts are logged</p>
+    </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     MAIN APP VIEW
+═══════════════════════════════════════ -->
+<div id="view-app" class="view">
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <img src="https://i.ibb.co/VWRCzt4Z/ffbf4ec0848acb2cff41d5686c8c8efd.webp" class="badge-icon" alt="sKora PD Logo" style="object-fit:contain;border-radius:4px;">
+      <div>
+        <div class="header-title" style="cursor:pointer;" onclick="showMain()">sKora Police Dept</div>
+        <div class="header-subtitle">Knowledge Base</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-profile">
+        <div class="profile-avatar" id="hdr-avatar">?</div>
+        <div>
+          <div class="profile-csn" id="hdr-csn">—</div>
+          <div class="profile-rank" id="hdr-rank">—</div>
+        </div>
+      </div>
+      <button class="logout-btn" onclick="doLogout()">Log Out</button>
+      <button class="logout-btn" onclick="showMain()" style="color:var(--accent);border-color:var(--border-hover);">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:4px;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home
+      </button>
+      <button class="settings-btn" onclick="toggleSettings()">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Settings
+      </button>
+    </div>
+  </header>
+
+  <!-- SETTINGS PANEL -->
+  <div class="settings-overlay" id="settings-overlay" onclick="handleSettingsClick(event)">
+    <div class="settings-panel" id="settings-panel">
+      <div class="settings-title">
+        Settings
+        <button class="settings-close" onclick="toggleSettings()">✕</button>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-label">Mode</div>
+        <div class="theme-mode-row">
+          <button class="mode-btn" id="mode-dark" onclick="setMode('dark')">Dark</button>
+          <button class="mode-btn" id="mode-light" onclick="setMode('light')">Light</button>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <div class="settings-section-label">Colour Theme</div>
+        <div class="colour-swatches">
+          <div class="swatch" id="swatch-blue" onclick="setColour('blue')">
+            <div class="swatch-dot" style="background:linear-gradient(135deg,#0C447C,#5FA3E8);"></div>
+            <span class="swatch-label">Blue</span>
+          </div>
+          <div class="swatch" id="swatch-bw" onclick="setColour('bw')">
+            <div class="swatch-dot" style="background:linear-gradient(135deg,#111,#ccc);"></div>
+            <span class="swatch-label">Black</span>
+          </div>
+          <div class="swatch" id="swatch-red" onclick="setColour('red')">
+            <div class="swatch-dot" style="background:linear-gradient(135deg,#7f1d1d,#f87171);"></div>
+            <span class="swatch-label">Red</span>
+          </div>
+          <div class="swatch" id="swatch-green" onclick="setColour('green')">
+            <div class="swatch-dot" style="background:linear-gradient(135deg,#14532d,#4ade80);"></div>
+            <span class="swatch-label">Green</span>
+          </div>
+          <div class="swatch" id="swatch-yellow" onclick="setColour('yellow')">
+            <div class="swatch-dot" style="background:linear-gradient(135deg,#713f12,#facc15);"></div>
+            <span class="swatch-label">Yellow</span>
+          </div>
+          <div class="swatch" id="swatch-purple" onclick="setColour('purple')">
+            <div class="swatch-dot" style="background:linear-gradient(135deg,#3b0764,#a78bfa);"></div>
+            <span class="swatch-label">Purple</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MAIN DASHBOARD PAGE ── -->
+  <div id="page-main" class="page active">
+    <div class="dashboard">
+      <div class="dash-hero">
+        <div class="dash-tag">Restricted — Authorised Personnel Only</div>
+        <h1 class="dash-h1">sKora <span>Police Dept</span></h1>
+        <div class="dash-divider"></div>
+        <p class="dash-desc">Official guidelines, protocols, and divisional regulations. Your access level is determined by your assigned role.</p>
+      </div>
+
+      <div class="section-label">Division Index</div>
+      <div class="div-grid" id="div-grid">
+        <!-- Populated by JS -->
+      </div>
+
+      <div id="admin-card-row" style="display:none;">
+        <div class="section-label">Administration</div>
+        <div class="div-grid">
+          <div class="div-card" onclick="showPage('admin')" style="--card-accent:#f59e0b;">
+            <span class="card-num">ADM</span>
+            <div class="card-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+            <div class="card-title">Admin Panel</div>
+            <div class="card-access">Manage Roster <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+          <div class="div-card" onclick="showPage('logs')" style="--card-accent:#8b5cf6;">
+            <span class="card-num">LOG</span>
+            <div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+            <div class="card-title">Activity Logs</div>
+            <div class="card-access">View Changes <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer><div class="footer-left">sKora PD Knowledge Base · Internal Use Only</div><div class="footer-right"><div class="status-dot"></div>Firebase Sync Active</div></footer>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       BASIC POLICING SECTIONS
+  ══════════════════════════════════════ -->
+  <div id="page-policing" class="page">
+
+    <!-- Policing sub-index -->
+    <div id="policing-index">
+      <div class="dashboard">
+        <div class="dash-hero" style="padding-top:1.5rem;">
+          <div class="dash-tag">Basic Policing</div>
+          <h1 class="dash-h1">sKora <span>Handbook</span></h1>
+          <div class="dash-divider"></div>
+          <p class="dash-desc">UK legislation, force guidelines, codes of ethics and operational standards for all sKora officers.</p>
+        </div>
+        <div class="section-label">Handbook Index</div>
+        <div class="div-grid">
+          <a class="div-card" href="#" onclick="showPolicingPage('pol-ethics'); return false;"><span class="card-num">01</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="card-title">Code of Ethics</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showPolicingPage('pol-caution'); return false;"><span class="card-num">02</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="card-title">Police Caution</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showPolicingPage('pol-search'); return false;"><span class="card-num">03</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="card-title">Conducting a Search</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showPolicingPage('pol-rta'); return false;"><span class="card-num">04</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div class="card-title">Road Traffic Act 1988</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showPolicingPage('pol-pace'); return false;"><span class="card-num">05</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="card-title">PACE 1984</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showPolicingPage('pol-mda'); return false;"><span class="card-num">06</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="card-title">Misuse of Drugs Act 1971</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showPolicingPage('pol-poa'); return false;"><span class="card-num">07</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="card-title">Public Order &amp; Other Acts</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showPolicingPage('pol-assault'); return false;"><span class="card-num">08</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="card-title">Assault Legislation</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showPolicingPage('pol-driver'); return false;"><span class="card-num">09</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="card-title">Driver Levels</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showPolicingPage('pol-firearm'); return false;"><span class="card-num">10</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div><div class="card-title">Firearm Levels</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showPolicingPage('pol-codes'); return false;"><span class="card-num">11</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h7"/></svg></div><div class="card-title">IC Codes &amp; Phonetic Alphabet</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 01 CODE OF ETHICS ── -->
+    <div id="pol-ethics" class="pol-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showPolicingIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Handbook</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">01</div><div class="section-header-text"><h2>Code of Ethics</h2><p>Principles · Standards · Conduct</p></div></div>
+
+        <div class="subsection-title">IIPACE — Decision Making Model</div>
+        <div class="tfc-card"><div class="tfc-num">I</div><div><div class="tfc-name">Gather Information and Intelligence</div><div class="tfc-desc">Collect all available information relevant to the situation before acting.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">I</div><div><div class="tfc-name">Assess Threat and Develop a Working Strategy</div><div class="tfc-desc">Evaluate the level of risk and form a plan to manage the situation appropriately.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">P</div><div><div class="tfc-name">Consider Powers and Policy</div><div class="tfc-desc">Identify which legal powers apply and ensure any action is within force policy.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">A</div><div><div class="tfc-name">Identify Options</div><div class="tfc-desc">Consider all available courses of action before committing to one.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">C</div><div><div class="tfc-name">Take Action and Review</div><div class="tfc-desc">Act on the best available option and review the outcome to learn from the situation.</div></div></div>
+
+        <div class="subsection-title">MET Police Principles</div>
+        <div class="rule-block"><p><strong>Accountability</strong>You are answerable for all your decisions, actions and omissions.</p></div>
+        <div class="rule-block"><p><strong>Fairness</strong>You treat people fairly.</p></div>
+        <div class="rule-block"><p><strong>Honesty</strong>You are truthful and trustworthy.</p></div>
+        <div class="rule-block"><p><strong>Integrity</strong>You always do the right thing.</p></div>
+        <div class="rule-block"><p><strong>Leadership</strong>You lead by good example.</p></div>
+        <div class="rule-block"><p><strong>Objectivity</strong>You make choices on evidence and your best professional judgement.</p></div>
+        <div class="rule-block"><p><strong>Openness</strong>You are open and transparent in your actions and decisions.</p></div>
+        <div class="rule-block"><p><strong>Respect</strong>You treat everyone with respect.</p></div>
+        <div class="rule-block"><p><strong>Selflessness</strong>You act in the public interest.</p></div>
+      </div>
+    </div>
+
+    <!-- ── 02 POLICE CAUTION ── -->
+    <div id="pol-caution" class="pol-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showPolicingIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Handbook</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">02</div><div class="section-header-text"><h2>Police Caution</h2><p>Wording · Application · Requirements</p></div></div>
+        <div class="info-block" style="border-left:3px solid var(--accent);border-radius:0 4px 4px 0;">
+          <div class="info-label">Official Caution Wording</div>
+          <p style="font-family:'Share Tech Mono',monospace;font-size:.85rem;line-height:1.8;color:var(--text-primary);">"You do not have to say anything. But, it may harm your defence if you do not mention when questioned something which you later rely on in court. Anything you do say may be given in evidence."</p>
+        </div>
+        <div class="warning-block"><div class="warn-label">Requirement</div><p>The caution must be administered to a suspect before any questioning begins. Failure to caution a suspect correctly may render any subsequent admissions inadmissible in court.</p></div>
+      </div>
+    </div>
+
+    <!-- ── 03 CONDUCTING A SEARCH ── -->
+    <div id="pol-search" class="pol-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showPolicingIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Handbook</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">03</div><div class="section-header-text"><h2>Conducting a Search</h2><p>GO-WISELY · Standards · Rights</p></div></div>
+        <div class="prose"><p>Searches must be completed with the utmost respect and integrity. You must respect the suspect at all times, avoid searching in public view where possible, and understand their human rights. Where possible, only female officers should search female suspects.</p></div>
+
+        <div class="subsection-title">GO-WISELY Acronym</div>
+        <div class="tfc-card"><div class="tfc-num" style="font-size:1rem;font-weight:700;">G</div><div><div class="tfc-name">Grounds</div><div class="tfc-desc">Why do you suspect the person to be responsible for an offence?</div></div></div>
+        <div class="tfc-card"><div class="tfc-num" style="font-size:1rem;font-weight:700;">O</div><div><div class="tfc-name">Object of the Search</div><div class="tfc-desc">State the purpose — "The purpose is to find a ________."</div></div></div>
+        <div class="tfc-card"><div class="tfc-num" style="font-size:1rem;font-weight:700;">W</div><div><div class="tfc-name">Warrant Card</div><div class="tfc-desc">Present if plain-clothed or if the suspect requests proof of identity.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num" style="font-size:1rem;font-weight:700;">I</div><div><div class="tfc-name">Identity</div><div class="tfc-desc">Provide the identity of the officer conducting the search.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num" style="font-size:1rem;font-weight:700;">S</div><div><div class="tfc-name">Station</div><div class="tfc-desc">State the station where the officer is attached.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num" style="font-size:1rem;font-weight:700;">E</div><div><div class="tfc-name">Entitlement</div><div class="tfc-desc">Inform the suspect of their entitlement to a copy of the search record.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num" style="font-size:1rem;font-weight:700;">L</div><div><div class="tfc-name">Legal Power</div><div class="tfc-desc">State which search power is being used.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num" style="font-size:1rem;font-weight:700;">Y</div><div><div class="tfc-name">You Are Being Detained</div><div class="tfc-desc">"You are being detained for the purposes of a search."</div></div></div>
+
+        <div class="info-block"><div class="info-label">Note</div><p>The search does not need to be conducted in GO-WISELY order, but all elements must be covered.</p></div>
+      </div>
+    </div>
+
+    <!-- ── 04 ROAD TRAFFIC ACT ── -->
+    <div id="pol-rta" class="pol-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showPolicingIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Handbook</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">04</div><div class="section-header-text"><h2>Road Traffic Act 1988</h2><p>Sections · Offences · Powers</p></div></div>
+
+        <div class="rule-block"><p><strong>Section 4 — Driving Under the Influence</strong>It is an offence to drive a vehicle whilst under the influence of drugs or over the alcohol concentration limit.</p></div>
+        <div class="rule-block"><p><strong>Section 6 — Breathalyser Tests</strong>Gives an officer the power to administer breathalyser tests on someone driving a motor vehicle. It is an offence to fail to comply without a reasonable excuse.<br><br>Legal limit: <strong>35 micrograms of alcohol per 100 millilitres</strong>.</p></div>
+        <div class="rule-block"><p><strong>Section 87 — Driving Without a Licence</strong>It is an offence for someone to drive a motor vehicle on a road without a licence.</p></div>
+        <div class="rule-block"><p><strong>Section 163 — Power to Stop Vehicles</strong>Gives an officer the power to stop any vehicle driving on a public road.</p></div>
+        <div class="rule-block"><p><strong>Section 164 — Request for Driver's Licence</strong>The officer may request to obtain a driver's licence from someone driving on a public road, and in some cases their date of birth.</p></div>
+        <div class="rule-block"><p><strong>Section 165 — Names, Addresses and Insurance</strong>Gives an officer the power to obtain names and addresses of drivers and to request proof of insurance.</p></div>
+        <div class="rule-block"><p><strong>Section 165A — Seizure of Vehicles</strong>Power to seize and impound vehicles driven without a licence.</p></div>
+      </div>
+    </div>
+
+    <!-- ── 05 PACE 1984 ── -->
+    <div id="pol-pace" class="pol-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showPolicingIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Handbook</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">05</div><div class="section-header-text"><h2>Police and Criminal Evidence Act 1984</h2><p>PACE · Powers · Procedures</p></div></div>
+
+        <div class="rule-block"><p><strong>Section 1 — Stop and Search</strong>Gives an officer the power to stop and search a person if they have reasonable grounds for suspecting they will have prohibited or stolen goods. Covers any person, vehicle or items in/on a vehicle.</p></div>
+        <div class="rule-block"><p><strong>Section 17 — Entry to Premises for Arrest</strong>Gives an officer the power to enter a building without a warrant for the sole purpose of making an arrest.</p></div>
+        <div class="rule-block"><p><strong>Section 18 — Search of Arrested Person's Premises</strong>An officer may enter premises owned or controlled by a person under arrest to search for evidence or illegal items tied to that arrest.</p></div>
+        <div class="rule-block"><p><strong>Section 27 — Fingerprints</strong>Gives an officer the power to take a person's fingerprints if arrested for a crime.</p></div>
+        <div class="rule-block"><p><strong>Section 32 — Search Upon Arrest</strong>Gives an officer the power to search a person who has been arrested, for reasons such as suspecting they may have a weapon.</p></div>
+        <div class="rule-block"><p><strong>Section 54 — Search in Custody</strong>Gives an officer the power to search a person in police custody to determine that all evidence from the suspect has been secured.</p></div>
+        <div class="rule-block"><p><strong>Section 61 — Fingerprints Without Consent</strong>No fingerprint should be taken without consent, but may be taken without consent if the person is arrested, has not had fingerprints taken during a police investigation, or if an officer believes they are providing a false identity.</p></div>
+        <div class="rule-block"><p><strong>Section 62 — Intimate Samples</strong>An intimate sample may only be taken with appropriate consent or if authorised by an Inspector or above. Can be authorised if the officer believes it will confirm or disprove involvement in a crime.</p></div>
+        <div class="rule-block"><p><strong>Section 63 — Non-Intimate Samples</strong>May only be taken with consent, except when a person is being held in police custody.</p></div>
+      </div>
+    </div>
+
+    <!-- ── 06 MISUSE OF DRUGS ACT ── -->
+    <div id="pol-mda" class="pol-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showPolicingIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Handbook</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">06</div><div class="section-header-text"><h2>Misuse of Drugs Act 1971</h2><p>Classification · Possession · Supply</p></div></div>
+
+        <div class="subsection-title">Drug Classifications</div>
+        <table class="discipline-table">
+          <thead><tr><th>Class</th><th>Drugs</th><th>Severity</th></tr></thead>
+          <tbody>
+            <tr><td><span class="offence-num" style="color:var(--danger-text);">A</span></td><td>Heroin, Cocaine, Ecstasy, LSD</td><td style="color:var(--danger-text);font-family:'Share Tech Mono',monospace;font-size:.72rem;">Highest</td></tr>
+            <tr><td><span class="offence-num" style="color:var(--warn-text);">B</span></td><td>Cannabis, Ketamine, Mephedrone</td><td style="color:var(--warn-text);font-family:'Share Tech Mono',monospace;font-size:.72rem;">Medium</td></tr>
+            <tr><td><span class="offence-num" style="color:var(--success-text);">C</span></td><td>Anabolic Steroids</td><td style="color:var(--success-text);font-family:'Share Tech Mono',monospace;font-size:.72rem;">Lower</td></tr>
+          </tbody>
+        </table>
+
+        <div class="subsection-title">Sections</div>
+        <div class="rule-block"><p><strong>Section 4 — Production and Supply</strong>The production of controlled substances is prohibited and illegal. Supplying or offering to supply controlled substances is also prohibited. Officers must prove production (e.g. by tool use, cannabis trees) or supply (e.g. possession of packaging and large amounts of cash).</p></div>
+        <div class="rule-block"><p><strong>Section 5 — Possession</strong>Possession of any controlled substance without reasonable excuse is prohibited and illegal. Severity depends on the class of drug.</p></div>
+        <div class="rule-block"><p><strong>Section 6 — Cultivation of Cannabis</strong>It is not lawful for a person to cultivate any plant of the genus Cannabis. It is an offence to cultivate such plants.</p></div>
+        <div class="rule-block"><p><strong>Section 23 — Power to Search</strong>A police officer may search a person with reasonable suspicion that an individual is in possession of a Class A, B or C controlled substance. The GO-WISELY acronym must be used.</p></div>
+      </div>
+    </div>
+
+    <!-- ── 07 PUBLIC ORDER & OTHER ACTS ── -->
+    <div id="pol-poa" class="pol-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showPolicingIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Handbook</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">07</div><div class="section-header-text"><h2>Public Order &amp; Other Acts</h2><p>POA 1986 · CJPOA 1994 · PRA 2002 · Firearms Act 1968</p></div></div>
+
+        <div class="subsection-title">Public Order Act 1986</div>
+        <div class="rule-block"><p><strong>Section 4 — Causing Alarm or Distress</strong>Gives an officer the power to arrest a person who is causing alarm, distress or harassment towards a member of the public in an abusive manner (e.g. swearing, aggression).</p></div>
+        <div class="rule-block"><p><strong>Section 4A — Abusive or Threatening Behaviour</strong>Gives an officer the power to arrest someone who has acted in an abusive or threatening manner.</p></div>
+
+        <div class="subsection-title">Criminal Justice and Public Order Act 1994</div>
+        <div class="rule-block"><p><strong>Section 60 — Stop and Search in Anticipation of Violence</strong>Gives an officer the power to stop and search in anticipation of violence. Must be authorised by an Inspector or above who believes violent incidents may occur in the area. Can also be used in situations such as court cases where everyone entering is searched to prevent weapons being brought in.</p></div>
+
+        <div class="subsection-title">Police Reform Act 2002</div>
+        <div class="rule-block"><p><strong>Section 50 — Requiring Name of Antisocial Person</strong>Gives a police officer the power to require the name of a person they believe is acting in an antisocial manner.</p></div>
+        <div class="rule-block"><p><strong>Section 59 — Seizure of Vehicles Used Antisocially</strong>An officer may seize a vehicle where the driver is thought to have been driving carelessly or causing alarm or distress. A Section 59 can also be used to issue a warning for any antisocial driving.</p></div>
+
+        <div class="subsection-title">Firearms Act 1968</div>
+        <div class="rule-block"><p><strong>Section 47 — Stop and Search for Firearms</strong>Gives an officer the power to stop and search a person if they have reasonable grounds to suspect that person has a firearm on them (e.g. gunshots reported in the area).</p></div>
+      </div>
+    </div>
+
+    <!-- ── 08 ASSAULT LEGISLATION ── -->
+    <div id="pol-assault" class="pol-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showPolicingIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Handbook</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">08</div><div class="section-header-text"><h2>Assault Legislation</h2><p>Criminal Justice Act 1988 · Offences Against the Person Act 1861</p></div></div>
+
+        <div class="subsection-title">Assault</div>
+        <div class="prose"><p>Assault includes the following acts:</p></div>
+        <div class="rule-block"><p>Spitting</p></div>
+        <div class="rule-block"><p>Smacking</p></div>
+        <div class="rule-block"><p>Punching</p></div>
+
+        <div class="subsection-title">ABH — Actual Bodily Harm</div>
+        <div class="rule-block"><p>It is an offence to intentionally or recklessly assault someone causing bodily harm. It must be proved that the assault (including battery) caused the bodily harm.</p></div>
+
+        <div class="subsection-title">GBH — Grievous Bodily Harm</div>
+        <div class="rule-block"><p>Grievous Bodily Harm is a criminal offence under <strong>Sections 18 and 20</strong> of the Offences Against the Person Act 1861. Committing GBH means causing really serious injuries which severely affect the health of the victim — for example, broken bones.</p></div>
+        <div class="warning-block"><div class="warn-label">Key Distinction</div><p>ABH requires proof the assault caused harm. GBH requires proof of <strong>serious</strong> injury — the threshold is significantly higher. S.18 GBH requires intent; S.20 GBH requires recklessness.</p></div>
+      </div>
+    </div>
+
+    <!-- ── 09 DRIVER LEVELS ── -->
+    <div id="pol-driver" class="pol-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showPolicingIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Handbook</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">09</div><div class="section-header-text"><h2>Driver Levels</h2><p>Classifications · Authorisations · Capabilities</p></div></div>
+
+        <div class="tfc-card"><div class="tfc-num">B</div><div><div class="tfc-name">Basic Driver</div><div class="tfc-desc">Minimum level of driving classification for sKora Police drivers. Not permitted to undertake pursuits. Currently in training for blue light driving.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">R</div><div><div class="tfc-name">Response Driver</div><div class="tfc-desc">Has completed a response driving course. Authorised to undertake initial phase pursuit and to drive liveried vehicles.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">A</div><div><div class="tfc-name">Advanced Driver</div><div class="tfc-desc">Has completed an advanced driving course. Can undertake initial phase pursuit in marked vehicles. Takes precedence over Response drivers in a pursuit whilst awaiting a T-PAC driver. Can perform PITs and set DRA / PIT timers.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">A+</div><div><div class="tfc-name">Advanced+ Driver</div><div class="tfc-desc">Has completed an advanced driving course at the highest level. Takes precedence over Advanced drivers in a pursuit. Can perform PITs, TPACs, and overrule an Advanced driver's DRA / PIT timers.</div></div></div>
+
+        <div class="warning-block"><div class="warn-label">Important</div><p>Any driver level can be revoked as necessary for the integrity of the police.</p></div>
+      </div>
+    </div>
+
+    <!-- ── 10 FIREARM LEVELS ── -->
+    <div id="pol-firearm" class="pol-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showPolicingIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Handbook</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">10</div><div class="section-header-text"><h2>Firearm Levels</h2><p>AFO · SFO · Armoury Access</p></div></div>
+
+        <div class="rule-block"><p><strong>AFO — Authorised Firearms Officer</strong>Armoury access to the <strong>Glock 17 Pistol</strong> and <strong>SIG MPX</strong>. SCO-19 have access at this level.</p></div>
+        <div class="rule-block"><p><strong>SFO — Specialist Firearms Officer</strong>Full armoury access to the <strong>Glock 17</strong>, <strong>SIG MCX</strong>, and <strong>SIG MPX</strong>. Seal team equivalent. SCO-19 have access at this level.</p></div>
+        <div class="info-block"><div class="info-label">Note</div><p>Firearm levels are assigned separately from driver levels. Both may be revoked independently as required for the integrity of the force.</p></div>
+      </div>
+    </div>
+
+    <!-- ── 11 IC CODES & PHONETIC ── -->
+    <div id="pol-codes" class="pol-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showPolicingIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to Handbook</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">11</div><div class="section-header-text"><h2>IC Codes &amp; Phonetic Alphabet</h2><p>Identity Codes · Radio Alphabet</p></div></div>
+
+        <div class="subsection-title">IC Codes — Identity Codes</div>
+        <table class="discipline-table">
+          <thead><tr><th>Code</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><span class="offence-num">IC1</span></td><td>White — North European</td></tr>
+            <tr><td><span class="offence-num">IC2</span></td><td>Dark — South European</td></tr>
+            <tr><td><span class="offence-num">IC3</span></td><td>Black — African/Caribbean</td></tr>
+            <tr><td><span class="offence-num">IC4</span></td><td>South Asian — Indian/Pakistani/Bangladeshi</td></tr>
+            <tr><td><span class="offence-num">IC5</span></td><td>East Asian — Chinese/Japanese/Korean</td></tr>
+            <tr><td><span class="offence-num">IC6</span></td><td>Arab/North African</td></tr>
+            <tr><td><span class="offence-num">IC0</span></td><td>Not Stated / Unknown</td></tr>
+          </tbody>
+        </table>
+
+        <div class="subsection-title">NATO Phonetic Alphabet</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:6px;margin-top:.5rem;">
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>A</strong> Alpha</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>B</strong> Bravo</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>C</strong> Charlie</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>D</strong> Delta</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>E</strong> Echo</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>F</strong> Foxtrot</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>G</strong> Golf</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>H</strong> Hotel</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>I</strong> India</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>J</strong> Juliet</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>K</strong> Kilo</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>L</strong> Lima</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>M</strong> Mike</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>N</strong> November</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>O</strong> Oscar</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>P</strong> Papa</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>Q</strong> Quebec</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>R</strong> Romeo</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>S</strong> Sierra</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>T</strong> Tango</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>U</strong> Uniform</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>V</strong> Victor</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>W</strong> Whiskey</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>X</strong> X-Ray</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>Y</strong> Yankee</p></div>
+          <div class="rule-block" style="margin-bottom:0;"><p><strong>Z</strong> Zulu</p></div>
+        </div>
+      </div>
+    </div>
+
+    <footer><div class="footer-left">sKora PD · Basic Policing Handbook</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       RPU SECTIONS
+  ══════════════════════════════════════ -->
+  <div id="page-rpu" class="page">
+    <div class="content-section">
+      <button class="back-btn" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+      <div class="section-header">
+        <div class="section-num-large">02</div>
+        <div class="section-header-text"><h2>Road Policing Unit</h2><p>Protocols · Procedures · Standards</p></div>
+      </div>
+      <div class="placeholder-block">
+        <strong>Content Pending</strong>
+        <p>RPU guidelines and protocols will be added here.</p>
+      </div>
+    </div>
+    <footer><div class="footer-left">sKora PD · Road Policing Unit</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ARU SECTIONS
+  ══════════════════════════════════════ -->
+  <div id="page-aru" class="page">
+    <div id="aru-index" class="dashboard">
+      <div class="dash-hero" style="padding-top:1.5rem;">
+        <div class="dash-tag">Armed Response Unit</div>
+        <h1 class="dash-h1">ARU <span>Knowledge Base</span></h1>
+        <div class="dash-divider"></div>
+        <p class="dash-desc">All regulations, protocols and operational guidelines for ARU personnel.</p>
+      </div>
+      <div class="section-label">Regulation Index</div>
+      <div class="div-grid">
+        <a class="div-card" href="#" onclick="showARUPage('aru-chain'); return false;"><span class="card-num">01</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="card-title">Chain of Command</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+        <a class="div-card" href="#" onclick="showARUPage('aru-uniforms'); return false;"><span class="card-num">02</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg></div><div class="card-title">Uniforms</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+        <a class="div-card" href="#" onclick="showARUPage('aru-sections'); return false;"><span class="card-num">03</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div><div class="card-title">Sections</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+        <a class="div-card" href="#" onclick="showARUPage('aru-auth'); return false;"><span class="card-num">04</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="card-title">Authorised Use of Firearms</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+        <a class="div-card" href="#" onclick="showARUPage('aru-lethal'); return false;"><span class="card-num">05</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="card-title">Lethal Use of Force</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+        <a class="div-card" href="#" onclick="showARUPage('aru-discharge'); return false;"><span class="card-num">06</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="card-title">Firearm Discharges</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+        <a class="div-card" href="#" onclick="showARUPage('aru-tfc'); return false;"><span class="card-num">07</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="card-title">Tactical Firearm Commander</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+        <a class="div-card" href="#" onclick="showARUPage('aru-robberies'); return false;"><span class="card-num">08</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><div class="card-title">Robberies</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+        <a class="div-card" href="#" onclick="showARUPage('aru-raids'); return false;"><span class="card-num">09</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="card-title">Raids</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+        <a class="div-card" href="#" onclick="showARUPage('aru-training'); return false;"><span class="card-num">10</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="card-title">Training</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+      </div>
+    </div>
+
+    <!-- ARU sub-pages -->
+    <div id="aru-chain" class="aru-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showARUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to ARU Index</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">01</div><div class="section-header-text"><h2>ARU Chain of Command</h2><p>Hierarchy · Ranks · Responsibilities</p></div></div>
+        <div class="prose"><p>All ARU officers are to go through the Chain of Command when they need to speak with higher-ups regarding any problems or situations.</p></div>
+        <div class="chain-flow">
+          <div class="chain-node"><div class="rank-dot"></div><span class="rank-title">Chief Inspector</span><span class="rank-badge">Gold Command</span></div>
+          <div class="chain-arrow"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+          <div class="chain-node"><div class="rank-dot"></div><span class="rank-title">Inspector</span><span class="rank-badge">Silver Command</span></div>
+          <div class="chain-arrow"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+          <div class="chain-node"><div class="rank-dot"></div><span class="rank-title">Sergeant</span><span class="rank-badge">Bronze Command</span></div>
+        </div>
+        <div class="info-block"><div class="info-label">Protocol</div><p>Always escalate through the correct tier. Do not bypass Bronze Command to contact Silver or Gold Command unless instructed by a senior officer.</p></div>
+      </div>
+    </div>
+
+    <div id="aru-uniforms" class="aru-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showARUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to ARU Index</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">02</div><div class="section-header-text"><h2>Uniforms</h2><p>Dress Code · Equipment · Identification</p></div></div>
+        <div class="prose"><p>ARU officers have pre-set outfits arranged in the locker room by <strong>GC-01</strong>. These uniforms are not to be altered in any way. The uniforms are set to a high standard in line with the <strong>sKora Police Department Policy</strong>.</p></div>
+        <div class="subsection-title">Uniform Types</div>
+        <div class="rule-block"><p><strong>Standard Duty Uniform</strong>For daily job duties on active patrol. Must be worn as provided — no modifications permitted.</p></div>
+        <div class="rule-block"><p><strong>Raid Uniform</strong>For use exclusively when Trojan organises and carries out a raid. Only to be worn during sanctioned raid operations.</p></div>
+        <div class="warning-block"><div class="warn-label">Compliance Notice</div><p>Changing either provided uniform will be noticed by Bronze Command or higher. Continued non-compliance will result in disciplinary action.</p></div>
+      </div>
+    </div>
+
+    <div id="aru-sections" class="aru-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showARUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to ARU Index</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">03</div><div class="section-header-text"><h2>Sections</h2><p>Legislation · Offences · Application</p></div></div>
+        <div class="prose"><p>ARU officers must understand and execute the correct section for each offence. Understanding each section is vital — some offences may or may not involve firearms.</p></div>
+        <div class="subsection-title">ARU Sections</div>
+        <div class="rule-block"><p><strong>Section 47 — Firearms Act</strong>Firearms, Ammunition &amp; Explosives; includes items relating to the manufacturing of firearms or explosives.</p></div>
+        <div class="info-block"><div class="info-label">Additional Sections</div><p>The remainder of the applicable sections can be found in the <strong>sKora emails under Documents</strong>. All ARU officers must familiarise themselves with these prior to active deployment.</p></div>
+      </div>
+    </div>
+
+    <div id="aru-auth" class="aru-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showARUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to ARU Index</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">04</div><div class="section-header-text"><h2>Authorised Use of Firearms</h2><p>Storage · Deployment · Clearance</p></div></div>
+        <div class="prose"><p>All firearms must be kept in a vehicle lockbox at all times when starting a shift. At the beginning of every shift you must ensure you have sufficient ammunition and armour in the lockbox alongside your firearm.</p></div>
+        <div class="subsection-title">Storage Requirements</div>
+        <div class="rule-block"><p><strong>Handguns</strong>Must be kept in your <strong>glovebox lockbox</strong>. Not to be carried on your person unless authorised.</p></div>
+        <div class="rule-block"><p><strong>Assault Rifles (ARs)</strong>Must be kept in your <strong>boot lockbox</strong>. Not to be carried on your person unless authorised.</p></div>
+        <div class="info-block"><div class="info-label">Deployment Authorisation</div><p>Firearms may only be carried when requested by <strong>Gold Command</strong> or <strong>T-01</strong>, who will obtain clearance from Gold Command when attending a situation.</p></div>
+        <div class="subsection-title">Disciplinary Scale</div>
+        <table class="discipline-table"><thead><tr><th>Offence</th><th>Consequence</th></tr></thead><tbody>
+          <tr><td><span class="offence-num">1st</span></td><td>Verbal / written warning</td></tr>
+          <tr><td><span class="offence-num">2nd</span></td><td>Firearms licence revoked for one week</td></tr>
+          <tr><td><span class="offence-num">3rd</span></td><td>Removed from ARU and moved to frontline for a minimum of one month before re-consideration</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+
+    <div id="aru-lethal" class="aru-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showARUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to ARU Index</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">05</div><div class="section-header-text"><h2>Lethal Use of Force</h2><p>Escalation · Protocol · Accountability</p></div></div>
+        <div class="prose"><p>Trojan officers must de-escalate situations as smoothly and quickly as possible. <strong>Non-lethal force is always preferred.</strong> Lethal force is the absolute last resort unless the suspect poses a wide-ranging threat.</p></div>
+        <div class="subsection-title">One Up Rule — Escalation</div>
+        <div class="one-up-row"><div class="one-up-threat">Fleeing on foot (no weapon)</div><div class="one-up-response">Tackle the suspect to detain them.</div></div>
+        <div class="one-up-row"><div class="one-up-threat">Fists / unarmed assault</div><div class="one-up-response">Use a baton to stop the situation and detain the suspect.</div></div>
+        <div class="one-up-row"><div class="one-up-threat">Offensive weapon (bat / blade)</div><div class="one-up-response">Reach for your taser to neutralise the threat.</div></div>
+        <div class="one-up-row"><div class="one-up-threat">Firearm</div><div class="one-up-response">Authorised under Gold Command to obtain your firearm and neutralise the situation.</div></div>
+        <div class="subsection-title">Additional Rules</div>
+        <div class="rule-block"><p><strong>Armed suspect fleeing (not towards public)</strong>Under no circumstances may force be used. Tackle and cuff the suspect. If they run towards a crowd, non-lethal force may be used to protect the public.</p></div>
+        <div class="warning-block"><div class="warn-label">Taser in Vehicle — Prohibited</div><p>Under no circumstances should a taser be used on a suspect while they are in a vehicle. If this occurs you will be held accountable and an investigation carried out.</p></div>
+        <div class="rule-block"><p><strong>Taser Usage Window</strong>A taser may be used up until the suspect enters a vehicle. A minimum of <strong>30 seconds must elapse</strong> between each taser shot.</p></div>
+      </div>
+    </div>
+
+    <div id="aru-discharge" class="aru-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showARUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to ARU Index</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">06</div><div class="section-header-text"><h2>Firearm Discharges</h2><p>Conditions · Reporting · Review</p></div></div>
+        <div class="info-block"><div class="info-label">Guiding Principle</div><p>Discharging your firearm is always the last resort. <strong>We are here to preserve life, not take it.</strong></p></div>
+        <div class="subsection-title">Conditions for Discharge</div>
+        <div class="rule-block"><p>The suspect poses a <strong>severe or critical threat</strong> towards yourself or others.</p></div>
+        <div class="rule-block"><p>Every other use of force has been deployed and the suspect <strong>continues to pose a threat</strong>.</p></div>
+        <div class="subsection-title">Vehicle Tyre Rule</div>
+        <div class="rule-block"><p><strong>One Shot — One Tyre</strong>Only one shot to one tyre is permitted. If the shot is missed, you may not discharge again at the vehicle.</p></div>
+        <div class="rule-block"><p><strong>Scene Commander</strong>One ARU officer must be in command of any vehicle discharge situation. If no other ARU officer is on duty, the highest command on duty takes command or assigns an officer.</p></div>
+        <div class="subsection-title">Discharge Report — MDT Requirements</div>
+        <div class="rule-block"><p><strong>Officer Name &amp; Call Sign</strong></p></div>
+        <div class="rule-block"><p><strong>Discharge Location</strong></p></div>
+        <div class="rule-block"><p><strong>Reason for Discharge</strong></p></div>
+        <div class="rule-block"><p><strong>Bodycam Footage</strong>Must accompany the report.</p></div>
+        <div class="warning-block"><div class="warn-label">24-Hour Deadline</div><p>You have <strong>24 hours</strong> from discharge to submit the report. Failure to do so will result in an investigation. Bronze Command or higher will <strong>APPROVE</strong> or <strong>REJECT</strong> with feedback.</p></div>
+      </div>
+    </div>
+
+    <div id="aru-tfc" class="aru-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showARUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to ARU Index</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">07</div><div class="section-header-text"><h2>Tactical Firearm Commander</h2><p>Role · Authority · Responsibilities</p></div></div>
+        <div class="prose"><p>The TFC is a trained officer responsible for deploying firearm officers. The role carries significant accountability during high-pressure incidents.</p></div>
+        <div class="subsection-title">Core Responsibilities</div>
+        <div class="tfc-card"><div class="tfc-num">01</div><div><div class="tfc-name">Threat Assessment</div><div class="tfc-desc">Evaluates information to determine risk level and whether firearm officers are required.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">02</div><div><div class="tfc-name">Decision Making</div><div class="tfc-desc">Makes critical deployment decisions balancing threat against environmental factors and public safety.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">03</div><div><div class="tfc-name">Tactical Command</div><div class="tfc-desc">Deploys and coordinates firearm officers and resources in line with strategic objectives.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">04</div><div><div class="tfc-name">Incident Management</div><div class="tfc-desc">Leads responses during high-pressure armed incidents requiring calm decision-making under pressure.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">05</div><div><div class="tfc-name">Accountability</div><div class="tfc-desc">Must be prepared to justify every decision, particularly in critical situations with long-term consequences.</div></div></div>
+      </div>
+    </div>
+
+    <div id="aru-robberies" class="aru-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showARUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to ARU Index</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">08</div><div class="section-header-text"><h2>Robberies</h2><p>Response Protocol · Containment · Resolution</p></div></div>
+        <div class="prose"><p>Robberies fall under the <strong>Tactical Firearm Commander (TFC)</strong>. The first ARU officer on scene assumes the TFC role immediately.</p></div>
+        <div class="rule-block"><p><strong>First Officer on Scene</strong>Takes command as TFC without delay to ensure continuity, proper threat assessment, and safe resolution of any hostage situation.</p></div>
+        <div class="info-block"><div class="info-label">TFC Obligations</div><p>All standard TFC responsibilities apply. Refer to <strong>Section 07 — Tactical Firearm Commander</strong> for the full list.</p></div>
+      </div>
+    </div>
+
+    <div id="aru-raids" class="aru-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showARUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to ARU Index</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">09</div><div class="section-header-text"><h2>Raids</h2><p>Planning · Execution · Division Responsibilities</p></div></div>
+        <div class="prose"><p>Raids are executed per a precise plan written by <strong>T-01</strong> and <strong>T-02</strong>. All divisions hold accountability. Duties are briefed on the day.</p></div>
+        <div class="raid-phase"><div class="raid-phase-header"><span class="phase-tag">Phase 01</span><span class="phase-title">CID — Intelligence Gathering</span></div><div class="raid-phase-body"><p>CID goes undercover to document all entrances, exits, and car parks, alongside one or two ARU undercover units. Evidence is then presented to T-01 and T-02.</p></div></div>
+        <div class="raid-phase"><div class="raid-phase-header"><span class="phase-tag">Phase 02</span><span class="phase-title">ARU Commanders — Operational Planning</span></div><div class="raid-phase-body"><p>Two teams each with one ARU commander are allocated to different entrances. Both teams breach simultaneously on radio command. Once safe, ARU officers place traffic cones near stashes for CID. ARU commanders arrange RPU transport and brief Frontline on duties.</p></div></div>
+        <div class="raid-phase"><div class="raid-phase-header"><span class="phase-tag">Phase 03</span><span class="phase-title">RPU — Escort &amp; Support</span></div><div class="raid-phase-body"><p>RPU escorts ARU from sKora PD to the destination, pulls back to safe quarters during the operation, assists Frontline after, then escorts ARU back to PD.</p></div></div>
+        <div class="raid-phase"><div class="raid-phase-header"><span class="phase-tag">Phase 04</span><span class="phase-title">Frontline — Perimeter &amp; Support</span></div><div class="raid-phase-body"><p>Frontline barricades roads, holds the perimeter, escorts downed officers to SHS, places tents for privacy if SHS is on duty, and removes barricades once the raid concludes.</p></div></div>
+        <div class="raid-phase"><div class="raid-phase-header"><span class="phase-tag">Phase 05</span><span class="phase-title">CID — Evidence Collection</span></div><div class="raid-phase-body"><p>CID enters once ARU declares the building safe. CID has exclusive access to storage stations. Seized goods are transferred in unmarked vehicles to PD.</p></div></div>
+      </div>
+    </div>
+
+    <div id="aru-training" class="aru-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;"><button class="back-btn" style="margin-bottom:0;" onclick="showARUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to ARU Index</button><button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button></div>
+        <div class="section-header"><div class="section-num-large">10</div><div class="section-header-text"><h2>Training</h2><p>Schedule · Format · Objectives</p></div></div>
+        <div class="prose"><p>Training is held <strong>once a month</strong> with officers from each division. Sessions are structured like a raid using staged scenarios to build experience and confidence.</p></div>
+        <div class="rule-block"><p><strong>Format</strong>All division roles — ARU, CID, RPU, Frontline — are assigned and executed as in a live operation.</p></div>
+        <div class="rule-block"><p><strong>Scenario Variety</strong>Each month differs. Some sessions are straightforward; others include a fake hostage situation or complex scenario to test readiness under pressure.</p></div>
+        <div class="info-block"><div class="info-label">Purpose</div><p>When a real incident occurs, every officer across all divisions is prepared, confident, and familiar with their role.</p></div>
+      </div>
+    </div>
+
+    <footer><div class="footer-left">sKora PD · Armed Response Unit</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       CID SECTION
+  ══════════════════════════════════════ -->
+  <div id="page-cid" class="page">
+    <div class="content-section">
+      <button class="back-btn" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+      <div class="section-header">
+        <div class="section-num-large">04</div>
+        <div class="section-header-text"><h2>Criminal Investigations Division</h2><p>Protocols · Procedures · Standards</p></div>
+      </div>
+      <div class="placeholder-block">
+        <strong>Content Pending</strong>
+        <p>CID guidelines and protocols will be added here.</p>
+      </div>
+    </div>
+    <footer><div class="footer-left">sKora PD · Criminal Investigations Division</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ADMIN PANEL
+  ══════════════════════════════════════ -->
+  <div id="page-admin" class="page">
+    <div class="admin-wrap">
+      <div class="admin-header">
+        <div>
+          <div class="admin-title">Admin Panel</div>
+          <div class="admin-sub">Roster Management · Access Control · High Command Only</div>
+        </div>
+        <button class="back-btn" onclick="showMain()" style="margin-bottom:0;"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
+      </div>
+
+      <div class="admin-stats">
+        <div class="stat-card"><div class="stat-label">Total Officers</div><div class="stat-val accent" id="stat-total">0</div></div>
+        <div class="stat-card"><div class="stat-label">RPU Officers</div><div class="stat-val" id="stat-rpu">0</div></div>
+        <div class="stat-card"><div class="stat-label">ARU Officers</div><div class="stat-val" id="stat-aru">0</div></div>
+        <div class="stat-card"><div class="stat-label">CID Officers</div><div class="stat-val" id="stat-cid">0</div></div>
+      </div>
+
+      <!-- Add Officer -->
+      <div class="add-officer-form">
+        <div class="form-title">Add Officer to Roster</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">CSN</label>
+            <input class="form-input" id="new-csn" placeholder="ABC12345" maxlength="8" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Name</label>
+            <input class="form-input" id="new-name" placeholder="Officer Name" style="text-transform:none;" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Rank</label>
+            <select class="form-select" id="new-rank">
+              <option value="Student Constable">Student Constable</option>
+              <option value="Constable">Police Constable</option>
+              <option value="Sergeant">Sergeant</option>
+              <option value="Inspector">Inspector</option>
+              <option value="Chief Inspector">Chief Inspector</option>
+              <option value="Superintendent">Superintendent</option>
+              <option value="Chief Superintendent">Chief Superintendent</option>
+              <option value="Assistant Chief Constable">Assistant Chief Constable</option>
+              <option value="Deputy Chief Constable">Deputy Chief Constable</option>
+              <option value="Chief Constable">Chief Constable</option>
+            </select>
+          </div>
+          <button class="add-btn" onclick="addOfficer()">Add Officer</button>
+        </div>
+        <div style="margin-top:12px;">
+          <label class="form-label" style="margin-bottom:6px;">Division Access</label>
+          <div class="div-checks">
+            <label class="div-check"><input type="checkbox" id="chk-policing" checked disabled><span>Basic Policing (all)</span></label>
+            <label class="div-check"><input type="checkbox" id="chk-rpu"><span>RPU</span></label>
+            <label class="div-check"><input type="checkbox" id="chk-aru"><span>ARU</span></label>
+            <label class="div-check"><input type="checkbox" id="chk-cid"><span>CID</span></label>
+            <label class="div-check"><input type="checkbox" id="chk-admin"><span style="color:var(--warn-text);">Admin Panel</span></label>
+          </div>
+        </div>
+        <div class="login-error" id="add-error" style="margin-top:.75rem;"></div>
+        <div class="success-msg" id="add-success">Officer added successfully.</div>
+      </div>
+
+      <!-- Officer Table -->
+      <div class="officer-table-wrap">
+        <div class="officer-table-header">
+          <div class="officer-table-title">Current Roster</div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button class="edit-btn" onclick="forceRefresh()" style="white-space:nowrap;">&#8635; Refresh</button>
+            <input class="search-input" id="roster-search" placeholder="Search CSN or name..." oninput="renderTable()">
+          </div>
+        </div>
+        <div id="roster-loading" style="padding:2rem;text-align:center;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--text-muted);display:none;">Connecting to Firebase...</div>
+        <div style="overflow-x:auto;">
+          <table class="officer-table">
+            <thead><tr><th>CSN</th><th>Name</th><th>Rank</th><th>Divisions</th><th>Actions</th></tr></thead>
+            <tbody id="roster-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Change Admin PIN -->
+      <div class="admin-pin-section">
+        <div class="form-title">Change Admin PIN</div>
+        <div class="admin-sub" style="margin-bottom:.75rem;">Update the admin PIN used for configuration access.</div>
+        <div class="inline-form">
+          <div class="form-group">
+            <label class="form-label">New Admin PIN</label>
+            <input class="form-input" id="new-pin" type="password" placeholder="New PIN" style="text-transform:none;width:160px;">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Confirm PIN</label>
+            <input class="form-input" id="confirm-pin" type="password" placeholder="Confirm PIN" style="text-transform:none;width:160px;">
+          </div>
+          <button class="add-btn" onclick="changeAdminPin()">Update PIN</button>
+          <span class="success-msg" id="pin-success">PIN updated.</span>
+        </div>
+        <div class="login-error" id="pin-error" style="margin-top:.75rem;"></div>
+      </div>
+    </div>
+    <footer><div class="footer-left">sKora PD · Admin Panel · Restricted</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TRAINING VIDEOS
+  ══════════════════════════════════════ -->
+  <div id="page-training-videos" class="page">
+    <div class="admin-wrap">
+      <div class="admin-header">
+        <div>
+          <div class="admin-title">Training Videos</div>
+          <div class="admin-sub">Instructional · Operational · Reference</div>
+        </div>
+        <button class="back-btn" onclick="showMain()" style="margin-bottom:0;"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+      </div>
+
+      <!-- Add video form — admin only -->
+      <div id="video-add-section" style="display:none;">
+        <div class="video-add-form">
+          <div class="form-title">Add Training Video</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;margin-bottom:10px;">
+            <div class="form-group">
+              <label class="form-label">Video Title</label>
+              <input class="form-input" id="vid-title" placeholder="e.g. ARU Breach Techniques" style="text-transform:none;" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label class="form-label">YouTube URL or Embed ID</label>
+              <input class="form-input" id="vid-url" placeholder="https://youtube.com/watch?v=..." style="text-transform:none;" autocomplete="off">
+            </div>
+            <button class="add-btn" onclick="addVideo()">Add Video</button>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description (optional)</label>
+            <input class="form-input" id="vid-desc" placeholder="Brief description of what this video covers" style="text-transform:none;width:100%;" autocomplete="off">
+          </div>
+          <div class="login-error" id="vid-error" style="margin-top:.75rem;"></div>
+          <div class="success-msg" id="vid-success">Video added successfully.</div>
+        </div>
+      </div>
+
+      <div id="video-grid-wrap">
+        <div id="videos-loading" style="padding:2rem;text-align:center;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--text-muted);">Loading videos...</div>
+        <div class="video-grid" id="video-grid"></div>
+        <div id="videos-empty" style="display:none;">
+          <div class="placeholder-block"><strong>No Videos Yet</strong><p>Admin can add training videos using the form above.</p></div>
+        </div>
+      </div>
+    </div>
+    <footer><div class="footer-left">sKora PD · Training Videos</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ACTIVITY LOGS
+  ══════════════════════════════════════ -->
+  <div id="page-logs" class="page">
+    <div class="admin-wrap">
+      <div class="admin-header">
+        <div>
+          <div class="admin-title">Activity Logs</div>
+          <div class="admin-sub">All admin actions are recorded here in real time</div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button class="back-btn" onclick="showPage('admin')" style="margin-bottom:0;"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Admin Panel</button>
+          <button class="back-btn" onclick="showMain()" style="margin-bottom:0;"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+      </div>
+
+      <div class="admin-stats" style="grid-template-columns:repeat(4,1fr);">
+        <div class="stat-card"><div class="stat-label">Total Entries</div><div class="stat-val accent" id="logs-count">—</div></div>
+        <div class="stat-card"><div class="stat-label">Adds</div><div class="stat-val" id="logs-add-count" style="color:var(--success-text);">—</div></div>
+        <div class="stat-card"><div class="stat-label">Edits</div><div class="stat-val" id="logs-edit-count" style="color:var(--accent);">—</div></div>
+        <div class="stat-card"><div class="stat-label">Removals</div><div class="stat-val" id="logs-remove-count" style="color:var(--danger-text);">—</div></div>
+      </div>
+
+      <div class="officer-table-wrap">
+        <div class="officer-table-header">
+          <div class="officer-table-title">Change History</div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <select class="form-select" id="log-filter" onchange="filterLogs()" style="font-size:.72rem;padding:5px 8px;">
+              <option value="all">All Actions</option>
+              <option value="ADD">Adds Only</option>
+              <option value="EDIT">Edits Only</option>
+              <option value="REMOVE">Removals Only</option>
+              <option value="CONFIG">Config Changes</option>
+            </select>
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="log-table">
+            <thead><tr><th>Timestamp</th><th>Officer</th><th>Action</th><th>Detail</th></tr></thead>
+            <tbody id="logs-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <footer><div class="footer-left">sKora PD · Activity Logs · Restricted</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>
+  </div>
+
+</div><!-- /view-app -->
+
+<!-- Edit Modal -->
+<div class="modal-overlay" id="edit-modal">
+  <div class="modal">
+    <div class="modal-title">Edit Officer</div>
+    <input type="hidden" id="edit-csn-original">
+    <div class="form-group" style="margin-bottom:.75rem;">
+      <label class="form-label">CSN</label>
+      <input class="form-input" id="edit-csn" style="width:100%;" maxlength="8">
+    </div>
+    <div class="form-group" style="margin-bottom:.75rem;">
+      <label class="form-label">Name</label>
+      <input class="form-input" id="edit-name" style="width:100%;text-transform:none;">
+    </div>
+    <div class="form-group" style="margin-bottom:.75rem;">
+      <label class="form-label">Rank</label>
+      <select class="form-select" id="edit-rank" style="width:100%;">
+        <option value="Student Constable">Student Constable</option>
+        <option value="Constable">Police Constable</option>
+        <option value="Sergeant">Sergeant</option>
+        <option value="Inspector">Inspector</option>
+        <option value="Chief Inspector">Chief Inspector</option>
+        <option value="Superintendent">Superintendent</option>
+        <option value="Chief Superintendent">Chief Superintendent</option>
+        <option value="Assistant Chief Constable">Assistant Chief Constable</option>
+        <option value="Deputy Chief Constable">Deputy Chief Constable</option>
+        <option value="Chief Constable">Chief Constable</option>
+      </select>
+    </div>
+    <div class="form-group" style="margin-bottom:.75rem;">
+      <label class="form-label">Division Access</label>
+      <div class="div-checks" style="margin-top:4px;">
+        <label class="div-check"><input type="checkbox" id="edit-chk-rpu"><span>RPU</span></label>
+        <label class="div-check"><input type="checkbox" id="edit-chk-aru"><span>ARU</span></label>
+        <label class="div-check"><input type="checkbox" id="edit-chk-cid"><span>CID</span></label>
+        <label class="div-check"><input type="checkbox" id="edit-chk-admin"><span style="color:var(--warn-text);">Admin Panel</span></label>
+      </div>
+    </div>
+    <div class="modal-btns">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-confirm" onclick="saveEdit()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- Settings (plain script — no Firebase dependency) -->
+<script>
+/* ═══════════════════════════════════════
+   SETTINGS — THEME & COLOUR
+═══════════════════════════════════════ */
+const THEME_KEY  = 'skpd_theme';
+const COLOUR_KEY = 'skpd_colour';
+
+function applySettings(theme, colour) {
+  const html = document.documentElement;
+  html.setAttribute('data-theme', theme);
+  if (!colour || colour === 'blue') {
+    html.removeAttribute('data-colour');
+  } else {
+    html.setAttribute('data-colour', colour);
+  }
+  document.getElementById('mode-dark')?.classList.toggle('active', theme === 'dark');
+  document.getElementById('mode-light')?.classList.toggle('active', theme === 'light');
+  ['blue','bw','red','green','yellow','purple'].forEach(c => {
+    document.getElementById('swatch-' + c)?.classList.toggle('active', c === colour);
+  });
+}
+
+function setMode(mode) {
+  const colour = localStorage.getItem(COLOUR_KEY) || 'blue';
+  localStorage.setItem(THEME_KEY, mode);
+  applySettings(mode, colour);
+}
+
+function setColour(colour) {
+  const theme = localStorage.getItem(THEME_KEY) || 'dark';
+  localStorage.setItem(COLOUR_KEY, colour);
+  applySettings(theme, colour);
+}
+
+function toggleSettings() {
+  const overlay = document.getElementById('settings-overlay');
+  if (!overlay) return;
+  overlay.classList.toggle('show');
+  if (overlay.classList.contains('show')) {
+    const theme  = localStorage.getItem(THEME_KEY)  || 'dark';
+    const colour = localStorage.getItem(COLOUR_KEY) || 'blue';
+    applySettings(theme, colour);
+  }
+}
+
+function handleSettingsClick(e) {
+  if (e.target === document.getElementById('settings-overlay')) toggleSettings();
+}
+
+function loadSavedSettings() {
+  const theme  = localStorage.getItem(THEME_KEY)  || 'dark';
+  const colour = localStorage.getItem(COLOUR_KEY) || 'blue';
+  applySettings(theme, colour);
+}
+
+// Apply saved theme immediately on load (before anything else renders)
+loadSavedSettings();
+</script>
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import {
+  getFirestore, collection, doc, setDoc, deleteDoc,
+  onSnapshot, getDoc, getDocs, updateDoc, addDoc, serverTimestamp
+} from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+/* ═══════════════════════════════════════
+   FIREBASE INIT
+═══════════════════════════════════════ */
+const firebaseConfig = {
+  apiKey: "AIzaSyBZ82iouV_aGAPjK6rY_m7hqUsnMSyNVI8",
+  authDomain: "skora-pd.firebaseapp.com",
+  projectId: "skora-pd",
+  storageBucket: "skora-pd.firebasestorage.app",
+  messagingSenderId: "676224343900",
+  appId: "1:676224343900:web:47583c2f4b12a529ad2b99"
+};
+
+const app  = initializeApp(firebaseConfig);
+const db   = getFirestore(app);
+
+/* ═══════════════════════════════════════
+   CONSTANTS & STATE
+═══════════════════════════════════════ */
+const SESS_KEY = 'skpd_session';
+// In-memory roster cache — kept in sync by Firestore listener
+let rosterCache = [];
+let rosterUnsubscribe = null;
+
+/* ═══════════════════════════════════════
+   SESSION (stays as sessionStorage — per tab)
+═══════════════════════════════════════ */
+function getSession() {
+  try { return JSON.parse(sessionStorage.getItem(SESS_KEY)); } catch { return null; }
+}
+function saveSession(u) { sessionStorage.setItem(SESS_KEY, JSON.stringify(u)); }
+function clearSession()  { sessionStorage.removeItem(SESS_KEY); }
+
+function validateCSN(csn) {
+  return /^[A-Z]{3}[0-9]{5}$/.test(csn);
+}
+
+/* ═══════════════════════════════════════
+   FIRESTORE — REAL-TIME ROSTER LISTENER
+═══════════════════════════════════════ */
+function startRosterListener() {
+  if (rosterUnsubscribe) rosterUnsubscribe();
+
+  // Show loading indicator
+  const loadEl = document.getElementById('roster-loading');
+  if (loadEl) loadEl.style.display = 'block';
+
+  rosterUnsubscribe = onSnapshot(collection(db, 'officers'), snapshot => {
+    rosterCache = snapshot.docs.map(d => {
+      const data = d.data();
+      // Ensure divisions is always a proper array
+      if (!Array.isArray(data.divisions)) data.divisions = [];
+      return data;
+    });
+
+    // Hide loading indicator
+    const loadEl = document.getElementById('roster-loading');
+    if (loadEl) loadEl.style.display = 'none';
+
+    renderTable();
+    updateStats();
+
+    // If the currently logged-in officer's record was updated, refresh their session
+    const sess = getSession();
+    if (sess && !sess.isAdmin) {
+      const fresh = rosterCache.find(o => o.csn === sess.csn);
+      if (fresh) {
+        saveSession(fresh);
+        document.getElementById('hdr-rank').textContent = fresh.rank;
+        buildDivGrid(fresh);
+        document.getElementById('admin-card-row').style.display = fresh.isAdmin === true ? 'block' : 'none';
+      } else {
+        doLogout(true);
+      }
+    }
+  }, err => {
+    console.error('Firestore listener error:', err);
+    showFirebaseStatus('error');
+    const loadEl = document.getElementById('roster-loading');
+    if (loadEl) { loadEl.textContent = 'Firebase error: ' + err.message; loadEl.style.display = 'block'; }
+  });
+}
+
+async function forceRefresh() {
+  const btn = document.querySelector('.edit-btn');
+  const loadEl = document.getElementById('roster-loading');
+  if (loadEl) { loadEl.textContent = 'Refreshing...'; loadEl.style.display = 'block'; }
+
+  try {
+    const snapshot = await getDocs(collection(db, 'officers'));
+    rosterCache = snapshot.docs.map(d => {
+      const data = d.data();
+      if (!Array.isArray(data.divisions)) data.divisions = [];
+      return data;
+    });
+    renderTable();
+    updateStats();
+    if (loadEl) loadEl.style.display = 'none';
+  } catch(e) {
+    if (loadEl) { loadEl.textContent = 'Error: ' + e.message; loadEl.style.display = 'block'; }
+    console.error(e);
+  }
+}
+
+function stopRosterListener() {
+  if (rosterUnsubscribe) { rosterUnsubscribe(); rosterUnsubscribe = null; }
+}
+
+/* ═══════════════════════════════════════
+   FIRESTORE — OFFICER CRUD
+═══════════════════════════════════════ */
+async function fbAddOfficer(officer) {
+  await setDoc(doc(db, 'officers', officer.csn), officer);
+}
+
+async function fbUpdateOfficer(csn, data) {
+  await updateDoc(doc(db, 'officers', csn), data);
+}
+
+async function fbDeleteOfficer(csn) {
+  await deleteDoc(doc(db, 'officers', csn));
+}
+
+async function fbGetOfficer(csn) {
+  const snap = await getDoc(doc(db, 'officers', csn));
+  return snap.exists() ? snap.data() : null;
+}
+
+/* ═══════════════════════════════════════
+   FIRESTORE — ADMIN PIN
+═══════════════════════════════════════ */
+async function fbGetAdminPin() {
+  const snap = await getDoc(doc(db, 'config', 'admin'));
+  return snap.exists() ? (snap.data().pin || 'admin123') : 'admin123';
+}
+
+async function fbSetAdminPin(pin) {
+  await setDoc(doc(db, 'config', 'admin'), { pin }, { merge: true });
+}
+
+/* ═══════════════════════════════════════
+   FIRESTORE — ACTIVITY LOGS
+═══════════════════════════════════════ */
+async function writeLog(action, detail) {
+  const sess = getSession();
+  const actor = sess ? sess.csn : 'Unknown';
+  const actorName = sess ? sess.name : 'Unknown';
+  try {
+    await addDoc(collection(db, 'logs'), {
+      actor,
+      actorName,
+      action,
+      detail,
+      timestamp: serverTimestamp()
+    });
+  } catch(e) {
+    console.warn('Log write failed:', e.message);
+  }
+}
+
+let logsUnsubscribe = null;
+
+function startLogsListener() {
+  if (logsUnsubscribe) logsUnsubscribe();
+  const logsEl = document.getElementById('logs-tbody');
+  if (!logsEl) return;
+
+  import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js').then(({ query, orderBy, limit }) => {
+    const q = query(collection(db, 'logs'), orderBy('timestamp', 'desc'), limit(100));
+    logsUnsubscribe = onSnapshot(q, snapshot => {
+      allLogsCache = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+      document.getElementById('logs-count').textContent = allLogsCache.length;
+      filterLogs();
+    }, err => {
+      if (logsEl) logsEl.innerHTML = `<tr><td colspan="4" style="color:var(--danger-text);padding:1rem;font-family:'Share Tech Mono',monospace;font-size:.72rem;">Error loading logs: ${err.message}</td></tr>`;
+    });
+  });
+}
+
+function stopLogsListener() {
+  if (logsUnsubscribe) { logsUnsubscribe(); logsUnsubscribe = null; }
+}
+
+/* ═══════════════════════════════════════
+   VIDEOS — FIRESTORE
+═══════════════════════════════════════ */
+let allLogsCache = [];
+
+function filterLogs() {
+  const filter = document.getElementById('log-filter')?.value || 'all';
+  const logsEl = document.getElementById('logs-tbody');
+  if (!logsEl) return;
+  const filtered = filter === 'all' ? allLogsCache : allLogsCache.filter(l => l.action === filter);
+
+  // Update mini stats
+  document.getElementById('logs-add-count').textContent    = allLogsCache.filter(l => l.action === 'ADD').length;
+  document.getElementById('logs-edit-count').textContent   = allLogsCache.filter(l => l.action === 'EDIT').length;
+  document.getElementById('logs-remove-count').textContent = allLogsCache.filter(l => l.action === 'REMOVE').length;
+
+  if (!filtered.length) {
+    logsEl.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--text-muted);font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.1em;padding:2rem;">No entries match this filter</td></tr>`;
+    return;
+  }
+  logsEl.innerHTML = filtered.map(l => {
+    const ts = l.timestamp ? new Date(l.timestamp.seconds * 1000).toLocaleString('en-GB') : '—';
+    const actionColour = l.action === 'REMOVE' ? 'var(--danger-text)' : l.action === 'ADD' ? 'var(--success-text)' : l.action === 'EDIT' ? 'var(--accent)' : 'var(--text-muted)';
+    return `<tr>
+      <td style="font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--text-muted);white-space:nowrap;">${ts}</td>
+      <td><span class="csn-cell">${l.actor}</span> <span style="color:var(--text-muted);font-size:.78rem;">${l.actorName || ''}</span></td>
+      <td><span style="font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.1em;color:${actionColour};background:rgba(0,0,0,.1);padding:2px 8px;border-radius:2px;">${l.action}</span></td>
+      <td style="font-size:.84rem;color:var(--text-secondary);">${l.detail}</td>
+    </tr>`;
+  }).join('');
+}
+
+let videosUnsubscribe = null;
+
+function startVideosListener() {
+  // Always restart — stop any existing listener first
+  if (videosUnsubscribe) { videosUnsubscribe(); videosUnsubscribe = null; }
+
+  const sess = getSession();
+  const isAdmin = sess && sess.isAdmin === true;
+  const addSection = document.getElementById('video-add-section');
+  if (addSection) addSection.style.display = isAdmin ? 'block' : 'none';
+
+  videosUnsubscribe = onSnapshot(collection(db, 'videos'), snapshot => {
+    const videos = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+    const grid = document.getElementById('video-grid');
+    const loading = document.getElementById('videos-loading');
+    const empty = document.getElementById('videos-empty');
+    if (loading) loading.style.display = 'none';
+    if (!grid) return;
+
+    if (!videos.length) {
+      grid.innerHTML = '';
+      if (empty) empty.style.display = 'block';
+      return;
+    }
+    if (empty) empty.style.display = 'none';
+
+    grid.innerHTML = videos.map(v => {
+      const embedId = extractYouTubeId(v.url);
+      return `<div class="video-card">
+        ${embedId
+          ? `<iframe class="video-embed" src="https://www.youtube.com/embed/${embedId}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`
+          : `<div class="video-embed" style="display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-family:'Share Tech Mono',monospace;font-size:.7rem;">Invalid URL</div>`
+        }
+        <div class="video-info">
+          <div class="video-title">${v.title}</div>
+          ${v.desc ? `<div class="video-desc">${v.desc}</div>` : ''}
+          ${isAdmin ? `<button class="del-btn" style="margin-top:.6rem;font-size:.72rem;" onclick="deleteVideo('${v.id}')">Remove</button>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+  }, err => {
+    const loading = document.getElementById('videos-loading');
+    if (loading) { loading.textContent = 'Error: ' + err.message; loading.style.display = 'block'; }
+  });
+}
+
+function extractYouTubeId(url) {
+  if (!url) return null;
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+    /^([a-zA-Z0-9_-]{11})$/
+  ];
+  for (const p of patterns) {
+    const m = url.match(p);
+    if (m) return m[1];
+  }
+  return null;
+}
+
+async function addVideo() {
+  const sess = getSession();
+  if (!sess || sess.isAdmin !== true) {
+    alert('You do not have permission to add videos.');
+    return;
+  }
+  const title = document.getElementById('vid-title').value.trim();
+  const url   = document.getElementById('vid-url').value.trim();
+  const desc  = document.getElementById('vid-desc').value.trim();
+  const errEl = document.getElementById('vid-error');
+  const okEl  = document.getElementById('vid-success');
+  errEl.classList.remove('show'); okEl.classList.remove('show');
+
+  if (!title) { errEl.textContent = 'Title is required.'; errEl.classList.add('show'); return; }
+  if (!extractYouTubeId(url)) { errEl.textContent = 'Invalid YouTube URL or video ID.'; errEl.classList.add('show'); return; }
+
+  try {
+    await addDoc(collection(db, 'videos'), { title, url, desc, addedAt: serverTimestamp() });
+    await writeLog('ADD', `Added training video: "${title}"`);
+    document.getElementById('vid-title').value = '';
+    document.getElementById('vid-url').value = '';
+    document.getElementById('vid-desc').value = '';
+    okEl.classList.add('show');
+    setTimeout(() => okEl.classList.remove('show'), 2500);
+  } catch(e) {
+    errEl.textContent = 'Firebase error: ' + e.message;
+    errEl.classList.add('show');
+  }
+}
+
+async function deleteVideo(id) {
+  const sess = getSession();
+  if (!sess || sess.isAdmin !== true) { alert('You do not have permission to remove videos.'); return; }
+  if (!confirm('Remove this training video?')) return;
+  try {
+    await deleteDoc(doc(db, 'videos', id));
+    await writeLog('REMOVE', `Removed training video (id: ${id})`);
+  } catch(e) {
+    alert('Firebase error: ' + e.message);
+  }
+}
+
+/* ═══════════════════════════════════════
+   FIREBASE STATUS INDICATOR
+═══════════════════════════════════════ */
+function showFirebaseStatus(state) {
+  const dot = document.querySelector('.status-dot');
+  if (!dot) return;
+  if (state === 'error') { dot.style.background = '#f87171'; }
+  else { dot.style.background = '#2DD4AA'; }
+}
+
+/* ═══════════════════════════════════════
+   AUTH
+═══════════════════════════════════════ */
+async function doLogin() {
+  const btn = document.querySelector('.login-btn');
+  const raw = document.getElementById('csn-input').value.trim();
+  const upper = raw.toUpperCase();
+
+  btn.textContent = 'Checking...';
+  btn.disabled = true;
+
+  try {
+    const officer = await fbGetOfficer(upper);
+    if (!officer) {
+      showLoginError('CSN not recognised — contact High Command');
+      btn.textContent = 'Access System';
+      btn.disabled = false;
+      return;
+    }
+    saveSession(officer);
+    bootApp(officer);
+  } catch(e) {
+    showLoginError('Connection error — check your internet and try again');
+    console.error(e);
+  }
+
+  btn.textContent = 'Access System';
+  btn.disabled = false;
+}
+
+function showLoginError(msg) {
+  const err = document.getElementById('login-error');
+  err.textContent = msg;
+  err.classList.add('show');
+  setTimeout(() => err.classList.remove('show'), 4000);
+}
+
+function doLogout(forced = false) {
+  stopRosterListener();
+  stopLogsListener();
+  if (videosUnsubscribe) { videosUnsubscribe(); videosUnsubscribe = null; }
+  clearSession();
+  document.getElementById('csn-input').value = '';
+  if (forced) {
+    showLoginError('Your access has been revoked. Contact High Command.');
+  }
+  switchView('login');
+}
+
+function bootApp(officer) {
+  document.getElementById('hdr-csn').textContent = officer.csn;
+  document.getElementById('hdr-rank').textContent = officer.rank;
+  document.getElementById('hdr-avatar').textContent = officer.csn.substring(0,2).toUpperCase();
+
+  buildDivGrid(officer);
+
+  if (officer.isAdmin === true) {
+    document.getElementById('admin-card-row').style.display = 'block';
+  } else {
+    document.getElementById('admin-card-row').style.display = 'none';
+  }
+
+  // Start real-time listeners for ALL logged-in users
+  startRosterListener();
+  startVideosListener();
+
+  showMain();
+  switchView('app');
+  showFirebaseStatus('ok');
+}
+
+/* ═══════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════ */
+function switchView(v) {
+  document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+  document.getElementById('view-' + v).classList.add('active');
+}
+
+function showPage(id) {
+  document.querySelectorAll('#view-app .page').forEach(p => p.classList.remove('active'));
+  const t = document.getElementById('page-' + id);
+  if (t) {
+    t.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+    if (id === 'admin') { renderTable(); updateStats(); }
+    if (id === 'logs') { startLogsListener(); }
+    if (id === 'training-videos') { startVideosListener(); }
+    if (id !== 'logs') { stopLogsListener(); }
+  }
+}
+
+function showMain() {
+  showPage('main');
+}
+
+function showARUPage(id) {
+  document.getElementById('aru-index').style.display = 'none';
+  document.querySelectorAll('.aru-subpage').forEach(p => p.style.display = 'none');
+  const t = document.getElementById(id);
+  if (t) { t.style.display = 'block'; window.scrollTo({top:0,behavior:'smooth'}); }
+}
+
+function showARUIndex() {
+  document.querySelectorAll('.aru-subpage').forEach(p => p.style.display = 'none');
+  document.getElementById('aru-index').style.display = 'block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showPolicingPage(id) {
+  document.getElementById('policing-index').style.display = 'none';
+  document.querySelectorAll('.pol-subpage').forEach(p => p.style.display = 'none');
+  const t = document.getElementById(id);
+  if (t) { t.style.display = 'block'; window.scrollTo({top:0,behavior:'smooth'}); }
+}
+
+function showPolicingIndex() {
+  document.querySelectorAll('.pol-subpage').forEach(p => p.style.display = 'none');
+  document.getElementById('policing-index').style.display = 'block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ═══════════════════════════════════════
+   DIVISION GRID
+═══════════════════════════════════════ */
+const DIVISIONS = [
+  { id:'policing',          num:'01', title:'Basic Policing',                   sub:'Guidelines · Standards · Conduct',        access:'all', icon:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>' },
+  { id:'rpu',               num:'02', title:'Road Policing Unit',              sub:'RPU Access Only',                         access:'rpu', icon:'<path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><polygon points="9 17 20 22 20 12 9 17"/>' },
+  { id:'aru',               num:'03', title:'Armed Response Unit',              sub:'ARU Access Only',                         access:'aru', icon:'<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>' },
+  { id:'cid',               num:'04', title:'Criminal Investigations Division', sub:'CID Access Only',                         access:'cid', icon:'<circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>' },
+  { id:'training-videos',   num:'05', title:'Training Videos',                  sub:'Instructional · Operational · Reference', access:'all', icon:'<polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/>' },
+];
+
+function buildDivGrid(officer) {
+  const grid = document.getElementById('div-grid');
+  grid.innerHTML = '';
+
+  DIVISIONS.forEach(d => {
+    const hasAccess = d.access === 'all' || officer.isAdmin || (officer.divisions && officer.divisions.includes(d.access));
+
+    const card = document.createElement('div');
+    card.className = 'div-card' + (hasAccess ? '' : ' locked');
+
+    if (hasAccess) {
+      card.onclick = () => {
+        if (d.id === 'aru') { showPage('aru'); showARUIndex(); }
+        else if (d.id === 'policing') { showPage('policing'); showPolicingIndex(); }
+        else if (d.id === 'training-videos') { showPage('training-videos'); startVideosListener(); }
+        else showPage(d.id);
+      };
+    }
+
+    card.innerHTML = `
+      <span class="card-num">${d.num}</span>
+      <div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${d.icon}</svg></div>
+      <div class="card-title">${d.title}</div>
+      <div class="card-access">
+        ${hasAccess
+          ? `Enter <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`
+          : `<svg class="lock-icon" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> No Access`
+        }
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+/* ═══════════════════════════════════════
+   ADMIN — ROSTER MANAGEMENT (Firebase)
+═══════════════════════════════════════ */
+async function addOfficer() {
+  const csn   = document.getElementById('new-csn').value.trim().toUpperCase();
+  const name  = document.getElementById('new-name').value.trim();
+  const rank  = document.getElementById('new-rank').value;
+  const rpu   = document.getElementById('chk-rpu').checked;
+  const aru   = document.getElementById('chk-aru').checked;
+  const cid   = document.getElementById('chk-cid').checked;
+  const admin = document.getElementById('chk-admin').checked;
+
+  const errEl = document.getElementById('add-error');
+  const okEl  = document.getElementById('add-success');
+  errEl.classList.remove('show');
+  okEl.classList.remove('show');
+
+  if (!validateCSN(csn)) { errEl.textContent = 'Invalid CSN — must be 3 capital letters + 5 numbers (e.g. ABC12345).'; errEl.classList.add('show'); return; }
+  if (!name) { errEl.textContent = 'Officer name is required.'; errEl.classList.add('show'); return; }
+  if (rosterCache.find(o => o.csn === csn)) { errEl.textContent = 'CSN already exists in roster.'; errEl.classList.add('show'); return; }
+
+  const divisions = [];
+  if (rpu) divisions.push('rpu');
+  if (aru) divisions.push('aru');
+  if (cid) divisions.push('cid');
+
+  const addBtn = document.querySelector('.add-btn');
+  addBtn.textContent = 'Saving...';
+  addBtn.disabled = true;
+
+  try {
+    await fbAddOfficer({ csn, name, rank, divisions, isAdmin: admin });
+    await writeLog('ADD', `Added officer ${name} (${csn}) — Rank: ${rank} — Divisions: ${divisions.join(', ') || 'none'}${admin ? ' — Admin: YES' : ''}`);
+    document.getElementById('new-csn').value = '';
+    document.getElementById('new-name').value = '';
+    document.getElementById('chk-rpu').checked = false;
+    document.getElementById('chk-aru').checked = false;
+    document.getElementById('chk-cid').checked = false;
+    document.getElementById('chk-admin').checked = false;
+    okEl.classList.add('show');
+    setTimeout(() => okEl.classList.remove('show'), 2500);
+  } catch(e) {
+    errEl.textContent = 'Firebase error — ' + e.message;
+    errEl.classList.add('show');
+  }
+
+  addBtn.textContent = 'Add Officer';
+  addBtn.disabled = false;
+}
+
+function renderTable() {
+  const tbody = document.getElementById('roster-tbody');
+  if (!tbody) return;
+  const searchEl = document.getElementById('roster-search');
+  const q = (searchEl ? searchEl.value : '').toLowerCase();
+
+  const filtered = rosterCache.filter(o =>
+    o.csn.toLowerCase().includes(q) || o.name.toLowerCase().includes(q)
+  );
+
+  if (!filtered.length) {
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;color:var(--text-muted);font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.1em;padding:2rem;">No officers found</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = filtered.map(o => `
+    <tr>
+      <td><span class="csn-cell">${o.csn}</span></td>
+      <td>${o.name}</td>
+      <td><span class="rank-cell">${o.rank}</span></td>
+      <td>
+        <span class="div-pill">Policing</span>
+        ${o.divisions.map(d => `<span class="div-pill">${d.toUpperCase()}</span>`).join('')}
+        ${o.isAdmin ? `<span class="div-pill" style="color:var(--warn-text);border-color:var(--warn-border);background:var(--warn);">ADMIN</span>` : ''}
+      </td>
+      <td>
+        <button class="edit-btn" onclick="openEdit('${o.csn}')">Edit</button>
+        <button class="del-btn" onclick="deleteOfficer('${o.csn}')">Remove</button>
+      </td>
+    </tr>`).join('');
+}
+
+async function deleteOfficer(csn) {
+  if (!confirm(`Remove ${csn} from the roster? They will immediately lose access.`)) return;
+  try {
+    await fbDeleteOfficer(csn);
+    await writeLog('REMOVE', `Removed officer ${csn} from roster`);
+  } catch(e) {
+    alert('Firebase error: ' + e.message);
+  }
+}
+
+function updateStats() {
+  const r = rosterCache;
+  const el = id => document.getElementById(id);
+  if (!el('stat-total')) return;
+  el('stat-total').textContent = r.length;
+  el('stat-rpu').textContent   = r.filter(o => o.divisions.includes('rpu')).length;
+  el('stat-aru').textContent   = r.filter(o => o.divisions.includes('aru')).length;
+  el('stat-cid').textContent   = r.filter(o => o.divisions.includes('cid')).length;
+}
+
+function openEdit(csn) {
+  const officer = rosterCache.find(o => o.csn === csn);
+  if (!officer) return;
+  document.getElementById('edit-csn-original').value = csn;
+  document.getElementById('edit-csn').value = officer.csn;
+  document.getElementById('edit-name').value = officer.name;
+  document.getElementById('edit-rank').value = officer.rank;
+  document.getElementById('edit-chk-rpu').checked = officer.divisions.includes('rpu');
+  document.getElementById('edit-chk-aru').checked = officer.divisions.includes('aru');
+  document.getElementById('edit-chk-cid').checked = officer.divisions.includes('cid');
+  document.getElementById('edit-chk-admin').checked = officer.isAdmin === true;
+  document.getElementById('edit-modal').classList.add('show');
+}
+
+function closeModal() { document.getElementById('edit-modal').classList.remove('show'); }
+
+async function saveEdit() {
+  const orig  = document.getElementById('edit-csn-original').value;
+  const csn   = document.getElementById('edit-csn').value.trim().toUpperCase();
+  const name  = document.getElementById('edit-name').value.trim();
+  const rank  = document.getElementById('edit-rank').value;
+  const rpu   = document.getElementById('edit-chk-rpu').checked;
+  const aru   = document.getElementById('edit-chk-aru').checked;
+  const cid   = document.getElementById('edit-chk-cid').checked;
+  const admin = document.getElementById('edit-chk-admin').checked;
+
+  if (!validateCSN(csn)) { alert('Invalid CSN format.'); return; }
+  if (!name) { alert('Name is required.'); return; }
+  if (csn !== orig && rosterCache.find(o => o.csn === csn)) { alert('CSN already exists.'); return; }
+
+  const divisions = [];
+  if (rpu) divisions.push('rpu');
+  if (aru) divisions.push('aru');
+  if (cid) divisions.push('cid');
+
+  const saveBtn = document.querySelector('.modal-confirm');
+  saveBtn.textContent = 'Saving...';
+  saveBtn.disabled = true;
+
+  try {
+    if (csn !== orig) {
+      await fbDeleteOfficer(orig);
+      await fbAddOfficer({ csn, name, rank, divisions, isAdmin: admin });
+      await writeLog('EDIT', `Changed CSN from ${orig} to ${csn} — Name: ${name} — Rank: ${rank} — Divisions: ${divisions.join(', ') || 'none'}${admin ? ' — Admin: YES' : ''}`);
+    } else {
+      await fbUpdateOfficer(csn, { name, rank, divisions, isAdmin: admin });
+      await writeLog('EDIT', `Updated officer ${csn} — Name: ${name} — Rank: ${rank} — Divisions: ${divisions.join(', ') || 'none'}${admin ? ' — Admin: YES' : ''}`);
+    }
+    closeModal();
+  } catch(e) {
+    alert('Firebase error: ' + e.message);
+  }
+
+  saveBtn.textContent = 'Save Changes';
+  saveBtn.disabled = false;
+}
+
+async function changeAdminPin() {
+  const np = document.getElementById('new-pin').value;
+  const cp = document.getElementById('confirm-pin').value;
+  const errEl = document.getElementById('pin-error');
+  const okEl  = document.getElementById('pin-success');
+  errEl.classList.remove('show');
+  okEl.classList.remove('show');
+
+  if (!np) { errEl.textContent = 'PIN cannot be empty.'; errEl.classList.add('show'); return; }
+  if (np !== cp) { errEl.textContent = 'PINs do not match.'; errEl.classList.add('show'); return; }
+  if (np.length < 4) { errEl.textContent = 'PIN must be at least 4 characters.'; errEl.classList.add('show'); return; }
+
+  try {
+    await fbSetAdminPin(np);
+    await writeLog('CONFIG', 'Admin PIN was changed');
+    document.getElementById('new-pin').value = '';
+    document.getElementById('confirm-pin').value = '';
+    okEl.classList.add('show');
+    setTimeout(() => okEl.classList.remove('show'), 2500);
+  } catch(e) {
+    errEl.textContent = 'Firebase error: ' + e.message;
+    errEl.classList.add('show');
+  }
+}
+
+/* ═══════════════════════════════════════
+   INIT
+═══════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  const sess = getSession();
+  if (sess) {
+    bootApp(sess);
+  } else {
+    switchView('login');
+  }
+});
+
+// Expose functions called from inline HTML handlers to global scope
+window.doLogin        = doLogin;
+window.doLogout       = doLogout;
+window.showMain       = showMain;
+window.showPage       = showPage;
+window.showARUPage    = showARUPage;
+window.showARUIndex   = showARUIndex;
+window.showPolicingPage  = showPolicingPage;
+window.showPolicingIndex = showPolicingIndex;
+window.addOfficer     = addOfficer;
+window.deleteOfficer  = deleteOfficer;
+window.openEdit       = openEdit;
+window.closeModal     = closeModal;
+window.saveEdit       = saveEdit;
+window.changeAdminPin = changeAdminPin;
+window.renderTable         = renderTable;
+window.forceRefresh        = forceRefresh;
+window.startLogsListener   = startLogsListener;
+window.stopLogsListener    = stopLogsListener;
+window.filterLogs          = filterLogs;
+window.addVideo            = addVideo;
+window.deleteVideo         = deleteVideo;
+</script>
+</body>
+</html>
