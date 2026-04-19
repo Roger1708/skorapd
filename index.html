@@ -843,17 +843,230 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
        RPU SECTIONS
   ══════════════════════════════════════ -->
   <div id="page-rpu" class="page">
-    <div class="content-section">
-      <button class="back-btn" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
-      <div class="section-header">
-        <div class="section-num-large">02</div>
-        <div class="section-header-text"><h2>Road Policing Unit</h2><p>Protocols · Procedures · Standards</p></div>
-      </div>
-      <div class="placeholder-block">
-        <strong>Content Pending</strong>
-        <p>RPU guidelines and protocols will be added here.</p>
+
+    <!-- RPU sub-index -->
+    <div id="rpu-index">
+      <div class="dashboard">
+        <div class="dash-hero" style="padding-top:1.5rem;">
+          <div class="dash-tag">Road Policing Unit</div>
+          <h1 class="dash-h1">RPU <span>Standard Operating Procedure</span></h1>
+          <div class="dash-divider"></div>
+          <p class="dash-desc">Last updated 19th October 2025. Official guidelines for all RPU personnel.</p>
+        </div>
+        <div class="section-label">SOP Index</div>
+        <div class="div-grid">
+          <a class="div-card" href="#" onclick="showRPUPage('rpu-overview'); return false;"><span class="card-num">01</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="card-title">Overview &amp; Purpose</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showRPUPage('rpu-drivers'); return false;"><span class="card-num">02</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div class="card-title">Driver Levels</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showRPUPage('rpu-tpac'); return false;"><span class="card-num">03</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/><line x1="12" y1="2" x2="12" y2="22"/><path d="M2 8.5l10 7 10-7"/></svg></div><div class="card-title">TPAC — Containment</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showRPUPage('rpu-tac'); return false;"><span class="card-num">04</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="card-title">Tactical Contact</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showRPUPage('rpu-pursuit'); return false;"><span class="card-num">05</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg></div><div class="card-title">Pursuit Guidelines &amp; DRA</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showRPUPage('rpu-rta'); return false;"><span class="card-num">06</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div><div class="card-title">Road Traffic Act 1988</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+        </div>
       </div>
     </div>
+
+    <!-- ── 01 OVERVIEW ── -->
+    <div id="rpu-overview" class="rpu-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;">
+          <button class="back-btn" style="margin-bottom:0;" onclick="showRPUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to RPU Index</button>
+          <button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+        <div class="section-header"><div class="section-num-large">01</div><div class="section-header-text"><h2>Overview &amp; Purpose</h2><p>Mission · Responsibilities · Operations</p></div></div>
+        <div class="prose"><p>The RPU's focus is to deny criminals use of the roads and surface transport network, and reduce serious injury and road deaths within Skora, whilst also assisting other divisions in their day-to-day duties via the public highways.</p></div>
+        <div class="subsection-title">Core Responsibilities</div>
+        <div class="rule-block"><p><strong>Emergency Traffic Management (ETM)</strong>Managing traffic during prison transport, court appearances, collisions, and other incidents requiring road control.</p></div>
+        <div class="rule-block"><p><strong>High-Speed Pursuit</strong>Pursuit of armed and non-armed criminals on public roads.</p></div>
+        <div class="rule-block"><p><strong>Investigative Policing</strong>Preventing crime on Skora's streets — including street racing and vehicle theft.</p></div>
+        <div class="info-block">
+          <div class="info-label">Operations</div>
+          <p>The division holds initiatives and plans operations in accordance with Skora legislation to more effectively manage the spread of crime in the city, coordinating with appropriate teams to do so.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 02 DRIVER LEVELS ── -->
+    <div id="rpu-drivers" class="rpu-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;">
+          <button class="back-btn" style="margin-bottom:0;" onclick="showRPUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to RPU Index</button>
+          <button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+        <div class="section-header"><div class="section-num-large">02</div><div class="section-header-text"><h2>Driver Levels</h2><p>Classifications · Entitlements · Training</p></div></div>
+        <div class="prose"><p>There are 3 driver levels in the Skora Police Department, each with their own training and additional entitlements. You are shown to be in emergency response when displaying emergency lights and/or using legal exemptions.</p></div>
+
+        <div class="tfc-card">
+          <div class="tfc-num">L1</div>
+          <div>
+            <div class="tfc-name">Driver Level 1 — Basic</div>
+            <div class="tfc-desc">Permitted to drive vehicles and may only use blue lights to initiate a traffic stop. Usually student constables who have not yet received pursuit training from the academy. Not permitted to undertake pursuits.</div>
+          </div>
+        </div>
+        <div class="tfc-card">
+          <div class="tfc-num">L2</div>
+          <div>
+            <div class="tfc-name">Driver Level 2 — Response</div>
+            <div class="tfc-desc">Permitted to drive with blue lights to respond to calls and attach onto pursuits. May initiate a pursuit but must fall back to the rear when a Level 3 or 4 driver attaches. Capable of deploying stingers and basic TPAC manoeuvres.</div>
+          </div>
+        </div>
+        <div class="tfc-card">
+          <div class="tfc-num">L3</div>
+          <div>
+            <div class="tfc-name">Driver Level 3 — Advanced</div>
+            <div class="tfc-desc">Has completed the Advanced Driver Training Course (ADTC). Trained in rolling blocks, tactical contact (PIT manoeuvres), deviation prevention, and setting DRA. Interceptor-trained — must attend ongoing training to maintain this level. Only Advanced drivers may act as the Tactical Advisor (TACAD) on a pursuit.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 03 TPAC ── -->
+    <div id="rpu-tpac" class="rpu-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;">
+          <button class="back-btn" style="margin-bottom:0;" onclick="showRPUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to RPU Index</button>
+          <button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+        <div class="section-header"><div class="section-num-large">03</div><div class="section-header-text"><h2>TPAC — Containment</h2><p>Tactical Pursuit and Containment · Box and Stop</p></div></div>
+
+        <div class="info-block">
+          <div class="info-label">TPAC Authorisation Requirements</div>
+          <p>The Tactical Advisor (TACAD) will authorise TPAC tactics only when both conditions are met: DRA has been consistently <strong>High or Critical</strong> for the duration of the pursuit, and it is safe to do so.</p>
+        </div>
+
+        <div class="subsection-title">Box and Stop Procedure</div>
+        <div class="prose"><p>Box and stop uses 3 or 4 vehicles to surround the suspect vehicle and bring it to a controlled, safe stop. On dual carriageways or motorways, a 4th vehicle may remain behind to create a safe zone.</p></div>
+
+        <div class="subsection-title">Communications Sequence</div>
+        <div class="one-up-row">
+          <div class="one-up-threat">Phase 1</div>
+          <div class="one-up-response">TPAC commander assigns each officer their position around the subject vehicle.</div>
+        </div>
+        <div class="one-up-row">
+          <div class="one-up-threat">State Amber</div>
+          <div class="one-up-response">"State Amber, State Amber" — units begin moving into their assigned positions.</div>
+        </div>
+        <div class="one-up-row">
+          <div class="one-up-threat">State Red</div>
+          <div class="one-up-response">"State Red, State Red" — the unit positioned in front of the subject vehicle moves into place ahead of it.</div>
+        </div>
+        <div class="one-up-row">
+          <div class="one-up-threat">Strike</div>
+          <div class="one-up-response">"Strike, strike, strike" — all units initiate and close any gaps the subject could escape through.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 04 TACTICAL CONTACT ── -->
+    <div id="rpu-tac" class="rpu-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;">
+          <button class="back-btn" style="margin-bottom:0;" onclick="showRPUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to RPU Index</button>
+          <button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+        <div class="section-header"><div class="section-num-large">04</div><div class="section-header-text"><h2>Tactical Contact</h2><p>PIT Manoeuvres · Speed Limits · Authorisation</p></div></div>
+
+        <div class="prose"><p>Tactical contact involves strategically making contact with the subject vehicle to bring it to a safe stop. This includes PIT manoeuvres — bringing the front section of your vehicle in line with the opposing rear section of the subject vehicle, then turning in the opposite direction to which you want the front of the subject vehicle to go.</p></div>
+
+        <div class="subsection-title">Speed Limits for Tactical Contact</div>
+        <table class="discipline-table">
+          <thead><tr><th>Location</th><th>Standard</th><th>RPU</th></tr></thead>
+          <tbody>
+            <tr><td>In city</td><td>70 mph or less</td><td>80 mph or less</td></tr>
+            <tr><td>Motorways / country roads</td><td>90 mph or less</td><td>100 mph or less</td></tr>
+          </tbody>
+        </table>
+        <div class="warning-block">
+          <div class="warn-label">Compliance</div>
+          <p>Tactical contact must be carried out in accordance with the city's laws and within the speed limits above. Exceeding these thresholds without authorisation will result in a review.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 05 PURSUIT GUIDELINES & DRA ── -->
+    <div id="rpu-pursuit" class="rpu-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;">
+          <button class="back-btn" style="margin-bottom:0;" onclick="showRPUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to RPU Index</button>
+          <button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+        <div class="section-header"><div class="section-num-large">05</div><div class="section-header-text"><h2>Pursuit Guidelines &amp; DRA</h2><p>Dynamic Risk Assessment · IPP · Hierarchy</p></div></div>
+
+        <div class="info-block">
+          <div class="info-label">Dynamic Risk Assessment (DRA)</div>
+          <p>DRA is the constant and continuous assessment of an incident to identify risk and implement mitigating measures. It is set <strong>only by the Tactical Advisor (TACAD)</strong>.</p>
+        </div>
+
+        <div class="subsection-title">DRA Levels</div>
+        <div class="rule-block" style="border-left-color:var(--success-text);">
+          <p><strong style="color:var(--success-text);">Low</strong>50–100 mph · Keeping correct lanes · Considering other road users</p>
+        </div>
+        <div class="rule-block" style="border-left-color:var(--warn-text);">
+          <p><strong style="color:var(--warn-text);">Medium</strong>100–150 mph · Driving in wrong lanes · Not considering road users · Has crashed more than once with small impact</p>
+        </div>
+        <div class="rule-block" style="border-left-color:#f97316;">
+          <p><strong style="color:#f97316;">High</strong>100–150 mph on motorways · Consistently in wrong lanes · Major accidents have occurred · Driving on pavements · PIT timer starts at 10 minutes</p>
+        </div>
+        <div class="rule-block" style="border-left-color:var(--danger-text);">
+          <p><strong style="color:var(--danger-text);">Critical</strong>Officer taken hostage · Imminent life danger from hard contact · Shots fired from vehicle</p>
+        </div>
+
+        <div class="subsection-title">Initial Phase Pursuit (IPP)</div>
+        <div class="prose"><p>IPP should be declared at the start of every pursuit. Include the following:</p></div>
+        <div class="rule-block"><p><strong>Location</strong>Road name, direction of travel, landmarks</p></div>
+        <div class="rule-block"><p><strong>Vehicle</strong>Make, model, colour(s), VRM, number of occupants (armed?)</p></div>
+        <div class="rule-block"><p><strong>Speed</strong>Current speed — is it increasing or decreasing?</p></div>
+        <div class="rule-block"><p><strong>Vehicle Density</strong>How many vehicles are in the area? (High / Medium / Low)</p></div>
+        <div class="rule-block"><p><strong>Pedestrian Density</strong>How many pedestrians are in the area? (High / Medium / Low)</p></div>
+        <div class="rule-block"><p><strong>Road Conditions</strong>What are the road conditions like?</p></div>
+        <div class="rule-block"><p><strong>Weather Conditions</strong>What is the weather like and how well can you see?</p></div>
+        <div class="info-block">
+          <div class="info-label">Also state when declaring IPP</div>
+          <p>Your <strong>driver classification</strong> (Basic, Response, or Advanced) and the <strong>type of vehicle</strong> you are in (bike, interceptor, unmarked, etc.).</p>
+        </div>
+
+        <div class="subsection-title">Pursuit Hierarchy</div>
+        <div class="one-up-row">
+          <div class="one-up-threat">Primary</div>
+          <div class="one-up-response">Usually the TACAD. Maintains first-hand view to accurately assess DRA throughout.</div>
+        </div>
+        <div class="one-up-row">
+          <div class="one-up-threat">Secondary</div>
+          <div class="one-up-response">Responsible for giving communications over radio.</div>
+        </div>
+        <div class="one-up-row">
+          <div class="one-up-threat">Tertiary</div>
+          <div class="one-up-response">Responsible for interference prevention.</div>
+        </div>
+        <div class="one-up-row">
+          <div class="one-up-threat">Quaternary</div>
+          <div class="one-up-response">Assists tertiary with interference prevention. May run parallel for stinger deployment.</div>
+        </div>
+
+        <div class="warning-block">
+          <div class="warn-label">Last Resort Principle</div>
+          <p>Pursuit activity places members of the public and police officers under significant risk. Wherever possible, <strong>preventing a pursuit from taking place must be the primary consideration</strong>. Pursuits should only be carried out if deemed necessary.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 06 ROAD TRAFFIC ACT ── -->
+    <div id="rpu-rta" class="rpu-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;">
+          <button class="back-btn" style="margin-bottom:0;" onclick="showRPUIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to RPU Index</button>
+          <button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+        <div class="section-header"><div class="section-num-large">06</div><div class="section-header-text"><h2>Road Traffic Act 1988</h2><p>RPU-Relevant Sections · Powers · Offences</p></div></div>
+
+        <div class="rule-block"><p><strong>Section 4 — Driving Under the Influence</strong>It is an offence to be under the influence of drugs or alcohol whilst in charge of a motor vehicle. A person may be arrested if the constable believes the suspect is under the influence.</p></div>
+        <div class="rule-block"><p><strong>Section 5 — Over the Prescribed Limit</strong>It is an offence for a person to be over the prescribed legal limit of alcohol whilst driving or in charge of a motor vehicle.</p></div>
+        <div class="rule-block"><p><strong>Section 163 — Power to Stop a Vehicle</strong>A police constable in uniform may stop a motor vehicle driving on a highway.</p></div>
+        <div class="rule-block"><p><strong>Section 164 — Request for Driving Documents</strong>A police constable has the power to request a person to produce documents such as a driving licence or proof of ownership.</p></div>
+        <div class="rule-block"><p><strong>Section 165 — Names and Addresses</strong>A police constable may obtain the names and addresses of persons driving a vehicle on a public highway.</p></div>
+        <div class="rule-block"><p><strong>Section 165A — Seizure of Vehicles</strong>A police constable may seize a vehicle they believe is being driven on a public highway without a licence or insurance.</p></div>
+      </div>
+    </div>
+
     <footer><div class="footer-left">sKora PD · Road Policing Unit</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>
   </div>
 
@@ -1041,7 +1254,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
           <div class="dash-tag">Criminal Investigations Division</div>
           <h1 class="dash-h1">CID <span>Standard Operating Procedure</span></h1>
           <div class="dash-divider"></div>
-          <p class="dash-desc">Created by Chief Inspector Ryan King — I-01. Official guidelines for all CID personnel.</p>
+          <p class="dash-desc">Official guidelines for all CID personnel.</p>
         </div>
         <div class="section-label">SOP Index</div>
         <div class="div-grid">
@@ -1553,6 +1766,19 @@ function showCIDPage(id) {
 function showCIDIndex() {
   document.querySelectorAll('.cid-subpage').forEach(p => p.style.display = 'none');
   document.getElementById('cid-index').style.display = 'block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showRPUPage(id) {
+  document.getElementById('rpu-index').style.display = 'none';
+  document.querySelectorAll('.rpu-subpage').forEach(p => p.style.display = 'none');
+  const t = document.getElementById(id);
+  if (t) { t.style.display = 'block'; window.scrollTo({top:0,behavior:'smooth'}); }
+}
+
+function showRPUIndex() {
+  document.querySelectorAll('.rpu-subpage').forEach(p => p.style.display = 'none');
+  document.getElementById('rpu-index').style.display = 'block';
   window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
@@ -2191,6 +2417,7 @@ function buildDivGrid(officer) {
         if (d.id === 'aru') { showPage('aru'); showARUIndex(); }
         else if (d.id === 'policing') { showPage('policing'); showPolicingIndex(); }
         else if (d.id === 'cid') { showPage('cid'); showCIDIndex(); }
+        else if (d.id === 'rpu') { showPage('rpu'); showRPUIndex(); }
         else if (d.id === 'training-videos') { showPage('training-videos'); startVideosListener(); }
         else showPage(d.id);
       };
@@ -2440,6 +2667,8 @@ window.showPolicingPage  = showPolicingPage;
 window.showPolicingIndex = showPolicingIndex;
 window.showCIDPage       = showCIDPage;
 window.showCIDIndex      = showCIDIndex;
+window.showRPUPage       = showRPUPage;
+window.showRPUIndex      = showRPUIndex;
 window.addOfficer     = addOfficer;
 window.deleteOfficer  = deleteOfficer;
 window.resetOfficerPassword = resetOfficerPassword;
