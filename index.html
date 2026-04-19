@@ -1033,17 +1033,210 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
        CID SECTION
   ══════════════════════════════════════ -->
   <div id="page-cid" class="page">
-    <div class="content-section">
-      <button class="back-btn" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
-      <div class="section-header">
-        <div class="section-num-large">04</div>
-        <div class="section-header-text"><h2>Criminal Investigations Division</h2><p>Protocols · Procedures · Standards</p></div>
-      </div>
-      <div class="placeholder-block">
-        <strong>Content Pending</strong>
-        <p>CID guidelines and protocols will be added here.</p>
+
+    <!-- CID sub-index -->
+    <div id="cid-index">
+      <div class="dashboard">
+        <div class="dash-hero" style="padding-top:1.5rem;">
+          <div class="dash-tag">Criminal Investigations Division</div>
+          <h1 class="dash-h1">CID <span>Standard Operating Procedure</span></h1>
+          <div class="dash-divider"></div>
+          <p class="dash-desc">Created by Chief Inspector Ryan King — I-01. Official guidelines for all CID personnel.</p>
+        </div>
+        <div class="section-label">SOP Index</div>
+        <div class="div-grid">
+          <a class="div-card" href="#" onclick="showCIDPage('cid-intro'); return false;"><span class="card-num">I</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="card-title">Introduction &amp; Onboarding</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showCIDPage('cid-command'); return false;"><span class="card-num">II</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div class="card-title">Chain of Command</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showCIDPage('cid-comms'); return false;"><span class="card-num">III</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.29 6.29l.83-.83a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="card-title">Communications</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showCIDPage('cid-evidence'); return false;"><span class="card-num">IV</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="card-title">Evidence</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showCIDPage('cid-vehicles'); return false;"><span class="card-num">V</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div class="card-title">Vehicle Operations</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showCIDPage('cid-uniform'); return false;"><span class="card-num">VI</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.57a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.57a2 2 0 0 0-1.34-2.23z"/></svg></div><div class="card-title">Uniform Policy</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+          <a class="div-card" href="#" onclick="showCIDPage('cid-duties'); return false;"><span class="card-num">VII</span><div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="card-title">Detective Field Duties</div><div class="card-access">View <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></a>
+        </div>
       </div>
     </div>
+
+    <!-- ── I. INTRODUCTION ── -->
+    <div id="cid-intro" class="cid-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;">
+          <button class="back-btn" style="margin-bottom:0;" onclick="showCIDIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to CID Index</button>
+          <button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+        <div class="section-header"><div class="section-num-large">I</div><div class="section-header-text"><h2>Introduction &amp; Onboarding</h2><p>Purpose · Policy · Activity</p></div></div>
+
+        <div class="subsection-title">Introduction</div>
+        <div class="prose">
+          <p>The purpose of this policy is to describe the duties, functions, and responsibilities of the sKora CID. CID is a professional, well-trained, and specialised division, upholding the responsibility of investigating targeted areas and individuals which greatly concern the community.</p>
+          <p>It is the policy of the CID to identify and apprehend offenders, and evaluate information regarding suspected criminal activity. Cases assigned to detectives shall be monitored and managed by supervisors, with the Chief Inspectors being responsible for overall case management.</p>
+        </div>
+
+        <div class="subsection-title">Activity Policy</div>
+        <div class="rule-block"><p>Upon joining CID, you will be expected to work at least <strong>5 hours per week</strong> to be shown as active. You are permitted to submit an LOA request to prevent becoming inactive on the roster.</p></div>
+        <div class="rule-block"><p>If you are unable to meet the weekly hours, or anticipate being unable to for the foreseeable future, contact your line supervisors <strong>and</strong> the Inspectors / Chief Inspector so they are aware of your situation.</p></div>
+
+        <div class="subsection-title">Permissions &amp; Documentation</div>
+        <div class="warning-block">
+          <div class="warn-label">Confidentiality</div>
+          <p>As a detective you will have access to <strong>restricted MDTs</strong>. Any disclosure of information to anyone outside of the department will be met with disciplinary procedures. The work of the CID stays within the department.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── II. CHAIN OF COMMAND ── -->
+    <div id="cid-command" class="cid-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;">
+          <button class="back-btn" style="margin-bottom:0;" onclick="showCIDIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to CID Index</button>
+          <button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+        <div class="section-header"><div class="section-num-large">II</div><div class="section-header-text"><h2>Chain of Command</h2><p>Rank Structure · Callsigns · Responsibilities</p></div></div>
+
+        <div class="info-block">
+          <div class="info-label">Callsign Format</div>
+          <p>Callsigns follow the format <strong>[division][rank][number]</strong>. For example, I-06 = Detective Sergeant. Refer to the roster for individual callsigns and rank responsibilities.</p>
+        </div>
+
+        <div class="subsection-title">Command</div>
+        <div class="chain-flow">
+          <div class="chain-node"><div class="rank-dot"></div><span class="rank-title">Detective Chief Inspector</span><span class="rank-badge">I-01</span></div>
+          <div class="chain-arrow"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+          <div class="chain-node"><div class="rank-dot"></div><span class="rank-title">Detective Inspector</span><span class="rank-badge">I-02 · I-03 · I-04</span></div>
+        </div>
+
+        <div class="subsection-title">Supervisors</div>
+        <div class="chain-flow">
+          <div class="chain-node"><div class="rank-dot"></div><span class="rank-title">Detective Sergeant</span><span class="rank-badge">I-05 · I-06 · I-07 · I-08</span></div>
+        </div>
+
+        <div class="subsection-title">Detectives</div>
+        <div class="rule-block"><p><strong>Detective Constable (DC)</strong>Fully qualified detective. Assigned active cases and field duties.</p></div>
+        <div class="rule-block"><p><strong>Trainee Detective Constable (TDC)</strong>Working under supervision to build field experience before promotion to DC.</p></div>
+
+        <div class="warning-block">
+          <div class="warn-label">Chain of Command Protocol</div>
+          <p>You are expected to follow the chain of command at all times. If the CID chain of command is unavailable, follow another division's Chain of Command so they can notify the relevant person.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── III. COMMUNICATIONS ── -->
+    <div id="cid-comms" class="cid-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;">
+          <button class="back-btn" style="margin-bottom:0;" onclick="showCIDIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to CID Index</button>
+          <button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+        <div class="section-header"><div class="section-num-large">III</div><div class="section-header-text"><h2>Communications</h2><p>Radio Protocol · Off-Comms Procedure</p></div></div>
+
+        <div class="prose"><p>As a member of the Police Department, you are required to use the communication system. The radio system is highly important — you <strong>must</strong> be in active comms to proceed on duty.</p></div>
+
+        <div class="subsection-title">Off-Comms Exceptions</div>
+        <div class="info-block">
+          <div class="info-label">When going off comms</div>
+          <p>Let officers on duty know to contact you via <strong>999</strong> if needed, as you will be off comms.</p>
+        </div>
+        <div class="rule-block"><p><strong>Undercover (UC)</strong>You will 999 your badge number and state that you are going UC.</p></div>
+        <div class="rule-block"><p><strong>Case Work</strong>You will 999 your badge number and state that you are working on case work.</p></div>
+      </div>
+    </div>
+
+    <!-- ── IV. EVIDENCE ── -->
+    <div id="cid-evidence" class="cid-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;">
+          <button class="back-btn" style="margin-bottom:0;" onclick="showCIDIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to CID Index</button>
+          <button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+        <div class="section-header"><div class="section-num-large">IV</div><div class="section-header-text"><h2>Evidence</h2><p>Collection · Handling · Analysis</p></div></div>
+
+        <div class="prose"><p>Evidence handling will be rehearsed in your training and involves utilising the <strong>sKora Police Forensics Lab</strong>.</p></div>
+        <div class="rule-block"><p><strong>Suitable Gloves</strong>You must wear suitable gloves at all times when handling evidence and change them per crime scene.</p></div>
+        <div class="rule-block"><p><strong>Evidence Bags</strong>All evidence must be bagged using an evidence bag before transport.</p></div>
+        <div class="rule-block"><p><strong>Forensics Lab</strong>All evidence must be analysed at the forensics lab. It is your duty to handle evidence correctly throughout the entire chain of custody.</p></div>
+      </div>
+    </div>
+
+    <!-- ── V. VEHICLE OPERATIONS ── -->
+    <div id="cid-vehicles" class="cid-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;">
+          <button class="back-btn" style="margin-bottom:0;" onclick="showCIDIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to CID Index</button>
+          <button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+        <div class="section-header"><div class="section-num-large">V</div><div class="section-header-text"><h2>Vehicle Operations</h2><p>Vehicle Access · Unmarked Usage · Authorisation</p></div></div>
+
+        <div class="rule-block"><p><strong>Vehicle Rank Access</strong>You are expected to follow the normal vehicle usage policy as determined in the Policies and Procedures document. Failure to do so will result in disciplinary action.</p></div>
+
+        <div class="subsection-title">Personal (Undercover) Vehicles</div>
+        <div class="rule-block"><p>Your personal vehicle may only be used with explicit permission from an <strong>I-02 or above</strong>. Use without proper authorisation will result in disciplinary procedures.</p></div>
+        <div class="rule-block"><p>You must be <strong>DC+</strong>, hold the <strong>Undercover certification</strong>, and have completed <strong>Driver Level 2</strong> training before being permitted to go undercover and use personal vehicles.</p></div>
+
+        <div class="subsection-title">Unmarked Patrol Vehicles</div>
+        <div class="rule-block"><p>The unmarked patrol vehicle is used for case work and anything associated with it. If you are in an unmarked vehicle you are <strong>not</strong> required to be actively patrolling.</p></div>
+        <div class="info-block">
+          <div class="info-label">Permitted Deployments (Unmarked)</div>
+          <p>You may assist on <strong>Status 13s</strong>, <strong>Status 0s</strong>, and <strong>Robberies</strong> (to secure the hostage), and large shootouts only if it is absolutely necessary.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── VI. UNIFORM POLICY ── -->
+    <div id="cid-uniform" class="cid-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;">
+          <button class="back-btn" style="margin-bottom:0;" onclick="showCIDIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to CID Index</button>
+          <button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+        <div class="section-header"><div class="section-num-large">VI</div><div class="section-header-text"><h2>Uniform Policy</h2><p>Undercover · Case Work · Patrol · Court</p></div></div>
+
+        <div class="subsection-title">Undercover (UC)</div>
+        <div class="rule-block"><p><strong>Minimum Equipment</strong>2x Radio · 1x Phone · 1x Rope · 1x Armour (equipped)</p></div>
+        <div class="rule-block"><p><strong>Civilian Clothing</strong>When investigating or working a case, casual civilian clothes may be worn to blend in. This must be <strong>authorised by CID command</strong> with an explanation of the objective.</p></div>
+        <div class="rule-block"><p><strong>Identity Protection</strong>When court-authorised, you will not need to carry ID or identify as a police officer in order to protect your identity whilst undercover.</p></div>
+        <div class="rule-block"><p><strong>Vehicles</strong>Use a normal civilian vehicle. These vehicles are CID property and assigned to the detective for the duration of the case.</p></div>
+        <div class="warning-block">
+          <div class="warn-label">Safety — In Trouble Code</div>
+          <p>Before every undercover operation, agree on an 'In Trouble' code phrase with the detectives involved. When transmitted over radio it signals immediate assistance is required. <strong>CODE: 67</strong></p>
+        </div>
+        <div class="warning-block">
+          <div class="warn-label">Permissible Crimes</div>
+          <p>Whilst undercover you may be asked to commit certain offences. All offences must be discussed and <strong>authorised by CID Command / Gold Command</strong>. Any unauthorised offences will be classed as criminal and may result in prosecution.</p>
+        </div>
+
+        <div class="subsection-title">Case Work</div>
+        <div class="rule-block"><p>Dress <strong>business casual</strong>. You must have something visible that represents CID membership — a badge, lanyard, or vest with visible police writing.</p></div>
+
+        <div class="subsection-title">Patrol</div>
+        <div class="rule-block"><p>Dress in your division's <strong>standard uniform</strong> whilst on patrol.</p></div>
+
+        <div class="subsection-title">Court</div>
+        <div class="rule-block"><p>When meeting members of the Court or attorneys, CID members must wear <strong>suits and ties</strong> at all times with the sKora Police <strong>lanyard visible</strong>. This also applies when presenting evidence in court.</p></div>
+        <div class="info-block">
+          <div class="info-label">Professionalism</div>
+          <p>CID is a professional department and must look professional at all stages. There are no exceptions to the court dress code.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── VII. DETECTIVE FIELD DUTIES ── -->
+    <div id="cid-duties" class="cid-subpage" style="display:none;">
+      <div class="content-section">
+        <div style="display:flex;gap:8px;margin-bottom:1.75rem;">
+          <button class="back-btn" style="margin-bottom:0;" onclick="showCIDIndex()"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back to CID Index</button>
+          <button class="back-btn" style="margin-bottom:0;" onclick="showMain()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+        <div class="section-header"><div class="section-num-large">VII</div><div class="section-header-text"><h2>Detective Field Duties</h2><p>Active · Passive · Stationary · Specialist</p></div></div>
+
+        <div class="tfc-card"><div class="tfc-num">01</div><div><div class="tfc-name">Active</div><div class="tfc-desc">Investigative patrolling in unmarked vehicles. Objective: check known locations and hotspots for criminal activity.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">02</div><div><div class="tfc-name">Passive</div><div class="tfc-desc">Maintaining observation of individuals or locations. Objective: obtain incriminating evidence to support the current investigation or case.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">03</div><div><div class="tfc-name">Stationary</div><div class="tfc-desc">Office or station-based work. Sorting cases, gathering a progress plan, and managing computer and document work for current investigations.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">04</div><div><div class="tfc-name">Interrogation &amp; Interviewing</div><div class="tfc-desc">All detectives undergo training in interview technique and tactics to gain information from suspects.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">05</div><div><div class="tfc-name">Forensic Analysis</div><div class="tfc-desc">All detectives undergo training on how to collect, analyse, and file evidence for cases.</div></div></div>
+        <div class="tfc-card"><div class="tfc-num">06</div><div><div class="tfc-name">Practical Field Work</div><div class="tfc-desc">After completing training you will remain a TDC and work alongside detectives to build field experience. Once sufficient experience is gained you will be considered for promotion to Detective Constable by your line manager.</div></div></div>
+      </div>
+    </div>
+
     <footer><div class="footer-left">sKora PD · Criminal Investigations Division</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>
   </div>
 
@@ -1349,6 +1542,19 @@ function loadSavedSettings() {
 
 // Apply saved theme immediately on load (before anything else renders)
 loadSavedSettings();
+
+function showCIDPage(id) {
+  document.getElementById('cid-index').style.display = 'none';
+  document.querySelectorAll('.cid-subpage').forEach(p => p.style.display = 'none');
+  const t = document.getElementById(id);
+  if (t) { t.style.display = 'block'; window.scrollTo({top:0,behavior:'smooth'}); }
+}
+
+function showCIDIndex() {
+  document.querySelectorAll('.cid-subpage').forEach(p => p.style.display = 'none');
+  document.getElementById('cid-index').style.display = 'block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 </script>
 
 <!-- Firebase SDK -->
@@ -1984,6 +2190,7 @@ function buildDivGrid(officer) {
       card.onclick = () => {
         if (d.id === 'aru') { showPage('aru'); showARUIndex(); }
         else if (d.id === 'policing') { showPage('policing'); showPolicingIndex(); }
+        else if (d.id === 'cid') { showPage('cid'); showCIDIndex(); }
         else if (d.id === 'training-videos') { showPage('training-videos'); startVideosListener(); }
         else showPage(d.id);
       };
@@ -2231,6 +2438,8 @@ window.showARUPage    = showARUPage;
 window.showARUIndex   = showARUIndex;
 window.showPolicingPage  = showPolicingPage;
 window.showPolicingIndex = showPolicingIndex;
+window.showCIDPage       = showCIDPage;
+window.showCIDIndex      = showCIDIndex;
 window.addOfficer     = addOfficer;
 window.deleteOfficer  = deleteOfficer;
 window.resetOfficerPassword = resetOfficerPassword;
