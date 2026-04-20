@@ -1254,7 +1254,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
           <div class="dash-tag">Criminal Investigations Division</div>
           <h1 class="dash-h1">CID <span>Standard Operating Procedure</span></h1>
           <div class="dash-divider"></div>
-          <p class="dash-desc">Official guidelines for all CID personnel.</p>
+          <p class="dash-desc">Created by Chief Inspector Ryan King — I-01. Official guidelines for all CID personnel.</p>
         </div>
         <div class="section-label">SOP Index</div>
         <div class="div-grid">
@@ -1454,202 +1454,14 @@ footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.
   </div>
 
   <!-- ══════════════════════════════════════
-       ADMIN PANEL
+       ADMIN PANEL — injected dynamically for admins only
   ══════════════════════════════════════ -->
-  <div id="page-admin" class="page">
-    <div class="admin-wrap">
-      <div class="admin-header">
-        <div>
-          <div class="admin-title">Admin Panel</div>
-          <div class="admin-sub">Roster Management · Access Control · High Command Only</div>
-        </div>
-        <button class="back-btn" onclick="showMain()" style="margin-bottom:0;"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
-      </div>
-
-      <div class="admin-stats">
-        <div class="stat-card"><div class="stat-label">Total Officers</div><div class="stat-val accent" id="stat-total">0</div></div>
-        <div class="stat-card"><div class="stat-label">RPU Officers</div><div class="stat-val" id="stat-rpu">0</div></div>
-        <div class="stat-card"><div class="stat-label">ARU Officers</div><div class="stat-val" id="stat-aru">0</div></div>
-        <div class="stat-card"><div class="stat-label">CID Officers</div><div class="stat-val" id="stat-cid">0</div></div>
-      </div>
-
-      <!-- Add Officer -->
-      <div class="add-officer-form">
-        <div class="form-title">Add Officer to Roster</div>
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">CSN</label>
-            <input class="form-input" id="new-csn" placeholder="ABC12345" maxlength="8" autocomplete="off">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Name</label>
-            <input class="form-input" id="new-name" placeholder="Officer Name" style="text-transform:none;" autocomplete="off">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Rank</label>
-            <select class="form-select" id="new-rank">
-              <option value="Student Constable">Student Constable</option>
-              <option value="Constable">Police Constable</option>
-              <option value="Sergeant">Sergeant</option>
-              <option value="Inspector">Inspector</option>
-              <option value="Chief Inspector">Chief Inspector</option>
-              <option value="Superintendent">Superintendent</option>
-              <option value="Chief Superintendent">Chief Superintendent</option>
-              <option value="Assistant Chief Constable">Assistant Chief Constable</option>
-              <option value="Deputy Chief Constable">Deputy Chief Constable</option>
-              <option value="Chief Constable">Chief Constable</option>
-            </select>
-          </div>
-          <button class="add-btn" onclick="addOfficer()">Add Officer</button>
-        </div>
-        <div style="margin-top:12px;">
-          <label class="form-label" style="margin-bottom:6px;">Division Access</label>
-          <div class="div-checks">
-            <label class="div-check"><input type="checkbox" id="chk-policing" checked disabled><span>Basic Policing (all)</span></label>
-            <label class="div-check"><input type="checkbox" id="chk-rpu"><span>RPU</span></label>
-            <label class="div-check"><input type="checkbox" id="chk-aru"><span>ARU</span></label>
-            <label class="div-check"><input type="checkbox" id="chk-cid"><span>CID</span></label>
-            <label class="div-check"><input type="checkbox" id="chk-admin"><span style="color:var(--warn-text);">Admin Panel</span></label>
-          </div>
-        </div>
-        <div class="login-error" id="add-error" style="margin-top:.75rem;"></div>
-        <div class="success-msg" id="add-success">Officer added successfully.</div>
-      </div>
-
-      <!-- Officer Table -->
-      <div class="officer-table-wrap">
-        <div class="officer-table-header">
-          <div class="officer-table-title">Current Roster</div>
-          <div style="display:flex;gap:8px;align-items:center;">
-            <button class="edit-btn" onclick="forceRefresh()" style="white-space:nowrap;">&#8635; Refresh</button>
-            <input class="search-input" id="roster-search" placeholder="Search CSN or name..." oninput="renderTable()">
-          </div>
-        </div>
-        <div id="roster-loading" style="padding:2rem;text-align:center;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--text-muted);display:none;">Connecting to Firebase...</div>
-        <div style="overflow-x:auto;">
-          <table class="officer-table">
-            <thead><tr><th>CSN</th><th>Name</th><th>Rank</th><th>Divisions</th><th>Actions</th></tr></thead>
-            <tbody id="roster-tbody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Change Admin PIN -->
-      <div class="admin-pin-section">
-        <div class="form-title">Change Admin PIN</div>
-        <div class="admin-sub" style="margin-bottom:.75rem;">Update the admin PIN used for configuration access.</div>
-        <div class="inline-form">
-          <div class="form-group">
-            <label class="form-label">New Admin PIN</label>
-            <input class="form-input" id="new-pin" type="password" placeholder="New PIN" style="text-transform:none;width:160px;">
-          </div>
-          <div class="form-group">
-            <label class="form-label">Confirm PIN</label>
-            <input class="form-input" id="confirm-pin" type="password" placeholder="Confirm PIN" style="text-transform:none;width:160px;">
-          </div>
-          <button class="add-btn" onclick="changeAdminPin()">Update PIN</button>
-          <span class="success-msg" id="pin-success">PIN updated.</span>
-        </div>
-        <div class="login-error" id="pin-error" style="margin-top:.75rem;"></div>
-      </div>
-    </div>
-    <footer><div class="footer-left">sKora PD · Admin Panel · Restricted</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>
-  </div>
+  <div id="page-admin" class="page"></div>
 
   <!-- ══════════════════════════════════════
-       TRAINING VIDEOS
+       ACTIVITY LOGS — injected dynamically for admins only
   ══════════════════════════════════════ -->
-  <div id="page-training-videos" class="page">
-    <div class="admin-wrap">
-      <div class="admin-header">
-        <div>
-          <div class="admin-title">Training Videos</div>
-          <div class="admin-sub">Instructional · Operational · Reference</div>
-        </div>
-        <button class="back-btn" onclick="showMain()" style="margin-bottom:0;"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
-      </div>
-
-      <!-- Add video form — admin only -->
-      <div id="video-add-section" style="display:none;">
-        <div class="video-add-form">
-          <div class="form-title">Add Training Video</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;margin-bottom:10px;">
-            <div class="form-group">
-              <label class="form-label">Video Title</label>
-              <input class="form-input" id="vid-title" placeholder="e.g. ARU Breach Techniques" style="text-transform:none;" autocomplete="off">
-            </div>
-            <div class="form-group">
-              <label class="form-label">YouTube URL or Embed ID</label>
-              <input class="form-input" id="vid-url" placeholder="https://youtube.com/watch?v=..." style="text-transform:none;" autocomplete="off">
-            </div>
-            <button class="add-btn" onclick="addVideo()">Add Video</button>
-          </div>
-          <div class="form-group">
-            <label class="form-label">Description (optional)</label>
-            <input class="form-input" id="vid-desc" placeholder="Brief description of what this video covers" style="text-transform:none;width:100%;" autocomplete="off">
-          </div>
-          <div class="login-error" id="vid-error" style="margin-top:.75rem;"></div>
-          <div class="success-msg" id="vid-success">Video added successfully.</div>
-        </div>
-      </div>
-
-      <div id="video-grid-wrap">
-        <div id="videos-loading" style="padding:2rem;text-align:center;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--text-muted);">Loading videos...</div>
-        <div class="video-grid" id="video-grid"></div>
-        <div id="videos-empty" style="display:none;">
-          <div class="placeholder-block"><strong>No Videos Yet</strong><p>Admin can add training videos using the form above.</p></div>
-        </div>
-      </div>
-    </div>
-    <footer><div class="footer-left">sKora PD · Training Videos</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>
-  </div>
-
-  <!-- ══════════════════════════════════════
-       ACTIVITY LOGS
-  ══════════════════════════════════════ -->
-  <div id="page-logs" class="page">
-    <div class="admin-wrap">
-      <div class="admin-header">
-        <div>
-          <div class="admin-title">Activity Logs</div>
-          <div class="admin-sub">All admin actions are recorded here in real time</div>
-        </div>
-        <div style="display:flex;gap:8px;">
-          <button class="back-btn" onclick="showPage('admin')" style="margin-bottom:0;"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Admin Panel</button>
-          <button class="back-btn" onclick="showMain()" style="margin-bottom:0;"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
-        </div>
-      </div>
-
-      <div class="admin-stats" style="grid-template-columns:repeat(4,1fr);">
-        <div class="stat-card"><div class="stat-label">Total Entries</div><div class="stat-val accent" id="logs-count">—</div></div>
-        <div class="stat-card"><div class="stat-label">Adds</div><div class="stat-val" id="logs-add-count" style="color:var(--success-text);">—</div></div>
-        <div class="stat-card"><div class="stat-label">Edits</div><div class="stat-val" id="logs-edit-count" style="color:var(--accent);">—</div></div>
-        <div class="stat-card"><div class="stat-label">Removals</div><div class="stat-val" id="logs-remove-count" style="color:var(--danger-text);">—</div></div>
-      </div>
-
-      <div class="officer-table-wrap">
-        <div class="officer-table-header">
-          <div class="officer-table-title">Change History</div>
-          <div style="display:flex;gap:8px;align-items:center;">
-            <select class="form-select" id="log-filter" onchange="filterLogs()" style="font-size:.72rem;padding:5px 8px;">
-              <option value="all">All Actions</option>
-              <option value="ADD">Adds Only</option>
-              <option value="EDIT">Edits Only</option>
-              <option value="REMOVE">Removals Only</option>
-              <option value="CONFIG">Config Changes</option>
-            </select>
-          </div>
-        </div>
-        <div style="overflow-x:auto;">
-          <table class="log-table">
-            <thead><tr><th>Timestamp</th><th>Officer</th><th>Action</th><th>Detail</th></tr></thead>
-            <tbody id="logs-tbody"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-    <footer><div class="footer-left">sKora PD · Activity Logs · Restricted</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>
-  </div>
+  <div id="page-logs" class="page"></div>
 
 </div><!-- /view-app -->
 
@@ -1861,6 +1673,7 @@ function startRosterListener() {
         document.getElementById('hdr-rank').textContent = fresh.rank;
         buildDivGrid(fresh);
         document.getElementById('admin-card-row').style.display = fresh.isAdmin === true ? 'block' : 'none';
+        if (fresh.isAdmin === true) injectAdminPages();
       } else {
         doLogout(true);
       }
@@ -2326,6 +2139,7 @@ function bootApp(officer) {
   buildDivGrid(officer);
 
   if (officer.isAdmin === true) {
+    injectAdminPages();
     document.getElementById('admin-card-row').style.display = 'block';
   } else {
     document.getElementById('admin-card-row').style.display = 'none';
@@ -2349,6 +2163,12 @@ function switchView(v) {
 }
 
 function showPage(id) {
+  // Guard — block admin/logs pages for non-admins entirely
+  const sess = getSession();
+  if ((id === 'admin' || id === 'logs') && (!sess || sess.isAdmin !== true)) {
+    console.warn('Unauthorised access attempt blocked:', id);
+    return;
+  }
   document.querySelectorAll('#view-app .page').forEach(p => p.classList.remove('active'));
   const t = document.getElementById('page-' + id);
   if (t) {
@@ -2358,6 +2178,139 @@ function showPage(id) {
     if (id === 'logs') { startLogsListener(); }
     if (id === 'training-videos') { startVideosListener(); }
     if (id !== 'logs') { stopLogsListener(); }
+  }
+}
+
+function injectAdminPages() {
+  // ── ADMIN PANEL — only injected for confirmed admins ──
+  const adminPage = document.getElementById('page-admin');
+  if (adminPage && !adminPage.dataset.injected) {
+    adminPage.dataset.injected = '1';
+    adminPage.innerHTML = `
+    <div class="admin-wrap">
+      <div class="admin-header">
+        <div>
+          <div class="admin-title">Admin Panel</div>
+          <div class="admin-sub">Roster Management · Access Control · High Command Only</div>
+        </div>
+        <button class="back-btn" onclick="showMain()" style="margin-bottom:0;"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Back</button>
+      </div>
+      <div class="admin-stats">
+        <div class="stat-card"><div class="stat-label">Total Officers</div><div class="stat-val accent" id="stat-total">0</div></div>
+        <div class="stat-card"><div class="stat-label">RPU Officers</div><div class="stat-val" id="stat-rpu">0</div></div>
+        <div class="stat-card"><div class="stat-label">ARU Officers</div><div class="stat-val" id="stat-aru">0</div></div>
+        <div class="stat-card"><div class="stat-label">CID Officers</div><div class="stat-val" id="stat-cid">0</div></div>
+      </div>
+      <div class="add-officer-form">
+        <div class="form-title">Add Officer to Roster</div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">CSN</label><input class="form-input" id="new-csn" placeholder="ABC12345" maxlength="8" autocomplete="off"></div>
+          <div class="form-group"><label class="form-label">Name</label><input class="form-input" id="new-name" placeholder="Officer Name" style="text-transform:none;" autocomplete="off"></div>
+          <div class="form-group">
+            <label class="form-label">Rank</label>
+            <select class="form-select" id="new-rank">
+              <option value="Student Constable">Student Constable</option>
+              <option value="Constable">Police Constable</option>
+              <option value="Sergeant">Sergeant</option>
+              <option value="Inspector">Inspector</option>
+              <option value="Chief Inspector">Chief Inspector</option>
+              <option value="Superintendent">Superintendent</option>
+              <option value="Chief Superintendent">Chief Superintendent</option>
+              <option value="Assistant Chief Constable">Assistant Chief Constable</option>
+              <option value="Deputy Chief Constable">Deputy Chief Constable</option>
+              <option value="Chief Constable">Chief Constable</option>
+            </select>
+          </div>
+          <button class="add-btn" onclick="addOfficer()">Add Officer</button>
+        </div>
+        <div style="margin-top:12px;">
+          <label class="form-label" style="margin-bottom:6px;">Division Access</label>
+          <div class="div-checks">
+            <label class="div-check"><input type="checkbox" id="chk-policing" checked disabled><span>Basic Policing (all)</span></label>
+            <label class="div-check"><input type="checkbox" id="chk-rpu"><span>RPU</span></label>
+            <label class="div-check"><input type="checkbox" id="chk-aru"><span>ARU</span></label>
+            <label class="div-check"><input type="checkbox" id="chk-cid"><span>CID</span></label>
+            <label class="div-check"><input type="checkbox" id="chk-admin"><span style="color:var(--warn-text);">Admin Panel</span></label>
+          </div>
+        </div>
+        <div class="login-error" id="add-error" style="margin-top:.75rem;"></div>
+        <div class="success-msg" id="add-success">Officer added successfully.</div>
+      </div>
+      <div class="officer-table-wrap">
+        <div class="officer-table-header">
+          <div class="officer-table-title">Current Roster</div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <button class="edit-btn" onclick="forceRefresh()" style="white-space:nowrap;">&#8635; Refresh</button>
+            <input class="search-input" id="roster-search" placeholder="Search CSN or name..." oninput="renderTable()">
+          </div>
+        </div>
+        <div id="roster-loading" style="padding:2rem;text-align:center;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.1em;color:var(--text-muted);display:none;">Connecting to Firebase...</div>
+        <div style="overflow-x:auto;">
+          <table class="officer-table">
+            <thead><tr><th>CSN</th><th>Name</th><th>Rank</th><th>Divisions</th><th>Actions</th></tr></thead>
+            <tbody id="roster-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="admin-pin-section">
+        <div class="form-title">Change Admin PIN</div>
+        <div class="admin-sub" style="margin-bottom:.75rem;">Update the admin PIN used for configuration access.</div>
+        <div class="inline-form">
+          <div class="form-group"><label class="form-label">New Admin PIN</label><input class="form-input" id="new-pin" type="password" placeholder="New PIN" style="text-transform:none;width:160px;"></div>
+          <div class="form-group"><label class="form-label">Confirm PIN</label><input class="form-input" id="confirm-pin" type="password" placeholder="Confirm PIN" style="text-transform:none;width:160px;"></div>
+          <button class="add-btn" onclick="changeAdminPin()">Update PIN</button>
+          <span class="success-msg" id="pin-success">PIN updated.</span>
+        </div>
+        <div class="login-error" id="pin-error" style="margin-top:.75rem;"></div>
+      </div>
+    </div>
+    <footer><div class="footer-left">sKora PD · Admin Panel · Restricted</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>`;
+  }
+
+  // ── ACTIVITY LOGS — only injected for confirmed admins ──
+  const logsPage = document.getElementById('page-logs');
+  if (logsPage && !logsPage.dataset.injected) {
+    logsPage.dataset.injected = '1';
+    logsPage.innerHTML = `
+    <div class="admin-wrap">
+      <div class="admin-header">
+        <div>
+          <div class="admin-title">Activity Logs</div>
+          <div class="admin-sub">All admin actions are recorded here in real time</div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button class="back-btn" onclick="showPage('admin')" style="margin-bottom:0;"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Admin Panel</button>
+          <button class="back-btn" onclick="showMain()" style="margin-bottom:0;"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+        </div>
+      </div>
+      <div class="admin-stats" style="grid-template-columns:repeat(4,1fr);">
+        <div class="stat-card"><div class="stat-label">Total Entries</div><div class="stat-val accent" id="logs-count">—</div></div>
+        <div class="stat-card"><div class="stat-label">Adds</div><div class="stat-val" id="logs-add-count" style="color:var(--success-text);">—</div></div>
+        <div class="stat-card"><div class="stat-label">Edits</div><div class="stat-val" id="logs-edit-count" style="color:var(--accent);">—</div></div>
+        <div class="stat-card"><div class="stat-label">Removals</div><div class="stat-val" id="logs-remove-count" style="color:var(--danger-text);">—</div></div>
+      </div>
+      <div class="officer-table-wrap">
+        <div class="officer-table-header">
+          <div class="officer-table-title">Change History</div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <select class="form-select" id="log-filter" onchange="filterLogs()" style="font-size:.72rem;padding:5px 8px;">
+              <option value="all">All Actions</option>
+              <option value="ADD">Adds Only</option>
+              <option value="EDIT">Edits Only</option>
+              <option value="REMOVE">Removals Only</option>
+              <option value="CONFIG">Config Changes</option>
+            </select>
+          </div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="log-table">
+            <thead><tr><th>Timestamp</th><th>Officer</th><th>Action</th><th>Detail</th></tr></thead>
+            <tbody id="logs-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <footer><div class="footer-left">sKora PD · Activity Logs · Restricted</div><div class="footer-right"><div class="status-dot"></div>Active</div></footer>`;
   }
 }
 
@@ -2683,6 +2636,7 @@ window.stopLogsListener    = stopLogsListener;
 window.filterLogs          = filterLogs;
 window.addVideo            = addVideo;
 window.deleteVideo         = deleteVideo;
+window.injectAdminPages    = injectAdminPages;
 </script>
 </body>
 </html>
